@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import type { AttackScenario, AttacksResponse, Execution } from './types/attack.types';
 import { attacksAPI } from './api/attacks';
 import { Header } from './components/Header';
+import { ProgressHeader } from './components/ProgressHeader';
 import { WelcomeSection } from './components/WelcomeSection';
 import { AttackGrid } from './components/AttackGrid';
 import { ExecutionPanel } from './components/ExecutionPanel';
@@ -94,6 +95,7 @@ function App() {
   return (
     <div className="min-h-screen bg-cs-darker">
       <Header />
+      <ProgressHeader />
 
       <main className="container mx-auto px-4 py-8">
         <WelcomeSection />

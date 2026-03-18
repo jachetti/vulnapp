@@ -4,6 +4,7 @@ import { useWebSocket } from '../hooks/useWebSocket';
 import { executionsAPI } from '../api/attacks';
 import { MitreBadge } from './MitreBadge';
 import { CurrentStageHeader } from './CurrentStageHeader';
+import { FlagSubmissionBox } from './FlagSubmissionBox';
 import { parseTerminalLine, extractCurrentStage, countTotalStages, type ParsedLine } from '../utils/terminalParser';
 
 interface ExecutionPanelProps {
@@ -288,6 +289,11 @@ export function ExecutionPanel({ attack, execution, onClose }: ExecutionPanelPro
                     )}
                   </div>
                 </div>
+              )}
+
+              {/* Flag Submission Box (only for completed learning scenarios) */}
+              {attack.flag && status === 'completed' && (
+                <FlagSubmissionBox scenario={attack} />
               )}
             </div>
           </div>

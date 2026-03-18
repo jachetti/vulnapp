@@ -17,6 +17,8 @@ export interface AttackScenario {
   is_modern: boolean;
   cve?: string[];
   prerequisites?: string[];
+  flag?: string;   // CTF flag for learning scenarios
+  points?: number; // Points awarded when flag is captured
 }
 
 export interface AttacksResponse {
