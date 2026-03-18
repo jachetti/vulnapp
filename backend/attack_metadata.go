@@ -13,6 +13,8 @@ type AttackScenario struct {
 	IsModern        bool              `json:"is_modern"`
 	CVE             []string          `json:"cve,omitempty"`
 	Prerequisites   []string          `json:"prerequisites,omitempty"`
+	Flag            string            `json:"flag,omitempty"`   // CTF flag for learning scenarios
+	Points          int               `json:"points,omitempty"` // Points awarded when flag is captured
 }
 
 // MitreTechnique represents a MITRE ATT&CK technique
@@ -368,6 +370,8 @@ var AllAttacks = []AttackScenario{
 		},
 		Severity: "HIGH",
 		IsModern: false,
+		Flag:     "FLAG{reverse_shell_works_same_in_containers}",
+		Points:   50,
 	},
 	{
 		ID:          "learn-02-process-discovery",
@@ -382,6 +386,8 @@ var AllAttacks = []AttackScenario{
 		},
 		Severity: "MEDIUM",
 		IsModern: false,
+		Flag:     "FLAG{discovered_container_boundaries_and_limits}",
+		Points:   50,
 	},
 	{
 		ID:          "learn-03-credential-theft",
@@ -396,6 +402,8 @@ var AllAttacks = []AttackScenario{
 		},
 		Severity: "HIGH",
 		IsModern: false,
+		Flag:     "FLAG{credentials_hidden_in_environment_variables}",
+		Points:   50,
 	},
 	{
 		ID:          "learn-04-container-escape",
@@ -409,6 +417,8 @@ var AllAttacks = []AttackScenario{
 		},
 		Severity: "CRITICAL",
 		IsModern: true,
+		Flag:     "FLAG{container_isolation_bypassed_welcome_to_host}",
+		Points:   100,
 	},
 	{
 		ID:          "learn-05-docker-socket",
@@ -423,6 +433,8 @@ var AllAttacks = []AttackScenario{
 		Severity:      "CRITICAL",
 		IsModern:      true,
 		Prerequisites: []string{"Docker socket must be mounted at /var/run/docker.sock"},
+		Flag:          "FLAG{docker_socket_gives_root_access_to_everything}",
+		Points:        150,
 	},
 	{
 		ID:          "learn-06-kubernetes-api",
@@ -437,6 +449,8 @@ var AllAttacks = []AttackScenario{
 		},
 		Severity: "CRITICAL",
 		IsModern: true,
+		Flag:     "FLAG{kubernetes_token_equals_cluster_admin_oops}",
+		Points:   200,
 	},
 	{
 		ID:          "learn-07-full-attack-chain",
@@ -454,6 +468,8 @@ var AllAttacks = []AttackScenario{
 		},
 		Severity: "CRITICAL",
 		IsModern: true,
+		Flag:     "FLAG{from_web_vuln_to_cluster_admin_in_10_minutes}",
+		Points:   300,
 	},
 
 	// ========== ATTACK CHAINS (Detection-Optimized Multi-Stage Attacks) ==========

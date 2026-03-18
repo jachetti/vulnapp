@@ -716,6 +716,11 @@ func main() {
 	http.HandleFunc("/api/vulnerable/reverse-shell", apiHandler.HandleVulnerableReverseShell)
 	http.HandleFunc("/api/vulnerable/sqli", apiHandler.HandleVulnerableSQL)
 
+	// Progress tracking endpoints (Learning scenarios with flag submission)
+	http.HandleFunc("/api/progress/submit-flag", backend.HandleFlagSubmission)
+	http.HandleFunc("/api/progress", backend.HandleGetProgress)
+	http.HandleFunc("/api/leaderboard", backend.HandleGetLeaderboard)
+
 	log.Println("API routes registered:")
 	log.Println("  GET  /api/attacks")
 	log.Println("  GET  /api/attacks/:id")
@@ -725,6 +730,10 @@ func main() {
 	log.Println("  GET  /api/executions/:id/stream (WebSocket)")
 	log.Println("  GET  /api/health")
 	log.Println("  GET  /api/system/info")
+	log.Println("Progress tracking:")
+	log.Println("  POST /api/progress/submit-flag")
+	log.Println("  GET  /api/progress?session_id=xxx")
+	log.Println("  GET  /api/leaderboard")
 	log.Println("Vulnerable endpoints:")
 	log.Println("  GET  /api/vulnerable/rce")
 	log.Println("  GET  /api/vulnerable/lfi")
