@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { AttackScenario, AttacksResponse, Execution } from './types/attack.types';
-import { attacksAPI, executionsAPI } from './api/attacks';
+import { attacksAPI } from './api/attacks';
 import { Header } from './components/Header';
 import { WelcomeSection } from './components/WelcomeSection';
 import { AttackGrid } from './components/AttackGrid';
