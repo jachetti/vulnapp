@@ -41,49 +41,45 @@ VulnApp v2.0 is a modern, interactive web platform that demonstrates **24 contai
 
 ---
 
-## 🚀 Quick Start
-
-### Option 1: Docker (Recommended)
+## 🚀 Quick Start (3 Commands!)
 
 ```bash
-# Pull and run (when available on quay.io)
-docker pull quay.io/crowdstrike/vulnapp:2.0
-docker run -p 80:80 quay.io/crowdstrike/vulnapp:2.0
-
-# Or build locally
-git clone https://github.com/CrowdStrike/vulnapp.git
+git clone https://github.com/jachetti/vulnapp.git
 cd vulnapp
-docker build -t vulnapp:2.0 .
-docker run -p 80:80 vulnapp:2.0
+docker build -t vulnapp .
+docker run -p 80:80 vulnapp
+```
+
+**That's it!** Open http://localhost in your browser.
+
+---
+
+### Detailed Options
+
+**Docker (Recommended)**
+```bash
+# Build and run
+docker build -t vulnapp .
+docker run -d --name vulnapp -p 80:80 vulnapp
 
 # Access application
 open http://localhost
+
+# Stop/start
+docker stop vulnapp
+docker start vulnapp
 ```
 
-### Option 2: Kubernetes
-
+**Kubernetes**
 ```bash
-# Deploy to Kubernetes
-kubectl apply -f https://raw.githubusercontent.com/crowdstrike/vulnapp/main/vulnerable.example.yaml
-
-# Get web address
-kubectl get service vulnapp -o jsonpath="{.status.loadBalancer.ingress[0].ip}"
-
-# Delete the app
-kubectl delete -f https://raw.githubusercontent.com/crowdstrike/vulnapp/main/vulnerable.example.yaml
+kubectl apply -f https://raw.githubusercontent.com/jachetti/vulnapp/main/vulnerable.example.yaml
+kubectl get service vulnapp
 ```
 
-### Option 3: OpenShift
-
+**OpenShift**
 ```bash
-# Deploy the app
-oc apply -f https://raw.githubusercontent.com/crowdstrike/vulnapp/main/vulnerable.openshift.yaml
-
-# Get the URL
+oc apply -f https://raw.githubusercontent.com/jachetti/vulnapp/main/vulnerable.openshift.yaml
 oc get route vulnapp
-
-# Delete the app
-oc delete -f https://raw.githubusercontent.com/crowdstrike/vulnapp/main/vulnerable.openshift.yaml
 ```
 
 ---
