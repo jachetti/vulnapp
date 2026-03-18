@@ -1,8 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import type { AttackScenario, Execution } from '../types/attack.types';
 import { useWebSocket } from '../hooks/useWebSocket';
 import { executionsAPI } from '../api/attacks';
 import { MitreBadge } from './MitreBadge';
+import { CurrentStageHeader } from './CurrentStageHeader';
+import { parseTerminalLine, extractCurrentStage, countTotalStages, type ParsedLine } from '../utils/terminalParser';
 
 interface ExecutionPanelProps {
   attack: AttackScenario;
@@ -12,6 +14,9 @@ interface ExecutionPanelProps {
 
 export function ExecutionPanel({ attack, execution, onClose }: ExecutionPanelProps) {
   const outputRef = useRef<HTMLDivElement>(null);
+  const [startTime] = useState(Date.now());
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const [isUserScrolling, setIsUserScrolling] = useState(false);
 
   // Setup WebSocket connection for live streaming
   const wsUrl = execution
@@ -20,12 +25,46 @@ export function ExecutionPanel({ attack, execution, onClose }: ExecutionPanelPro
 
   const { output, status, exitCode, duration, isConnected } = useWebSocket(wsUrl);
 
-  // Auto-scroll to bottom as output comes in
+  // Timer for elapsed time
   useEffect(() => {
-    if (outputRef.current) {
+    if (status === 'running') {
+      const interval = setInterval(() => {
+        setElapsedSeconds(Math.floor((Date.now() - startTime) / 1000));
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [status, startTime]);
+
+  // Parse output lines
+  const parsedLines: ParsedLine[] = useMemo(() => {
+    return output.map(parseTerminalLine);
+  }, [output]);
+
+  // Extract current stage info
+  const currentStage = useMemo(() => {
+    return extractCurrentStage(parsedLines);
+  }, [parsedLines]);
+
+  // Count total stages
+  const totalStages = useMemo(() => {
+    return countTotalStages(output.join('\n'));
+  }, [output]);
+
+  // Auto-scroll to bottom (unless user is scrolling)
+  useEffect(() => {
+    if (outputRef.current && !isUserScrolling) {
       outputRef.current.scrollTop = outputRef.current.scrollHeight;
     }
-  }, [output]);
+  }, [output, isUserScrolling]);
+
+  // Detect user scrolling
+  const handleScroll = () => {
+    if (outputRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = outputRef.current;
+      const isAtBottom = scrollHeight - scrollTop - clientHeight < 50;
+      setIsUserScrolling(!isAtBottom);
+    }
+  };
 
   const statusColors = {
     running: 'bg-yellow-500/20 text-yellow-400',
@@ -37,6 +76,78 @@ export function ExecutionPanel({ attack, execution, onClose }: ExecutionPanelPro
     running: '⟳',
     completed: '✓',
     failed: '✗',
+  };
+
+  // Render enhanced terminal line
+  const renderTerminalLine = (line: ParsedLine, idx: number) => {
+    switch (line.type) {
+      case 'stage-header':
+        return (
+          <div key={idx} className="my-4">
+            <div className="bg-gradient-to-r from-cs-red/20 to-transparent border-l-4 border-cs-red p-3 rounded">
+              <div className="flex items-center gap-3">
+                <span className="bg-cs-red text-white px-2 py-1 rounded text-xs font-bold">
+                  STAGE {line.metadata?.stageNumber}
+                </span>
+                <span className="text-white font-semibold text-base">
+                  {line.metadata?.stageTitle}
+                </span>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'command-start':
+        return (
+          <div key={idx} className="my-3 bg-blue-500/10 border border-blue-500/30 rounded-lg p-3">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-blue-400 text-xs font-semibold">▶ EXECUTING</span>
+            </div>
+            <code className="text-green-300 text-sm block pl-4">
+              $ {line.metadata?.command}
+            </code>
+          </div>
+        );
+
+      case 'stage-divider':
+        return (
+          <div key={idx} className="my-2 border-t border-gray-700 opacity-30" />
+        );
+
+      case 'teaching-note':
+        return (
+          <div key={idx} className="text-yellow-300 bg-yellow-500/10 px-3 py-1 rounded my-1 text-sm border-l-2 border-yellow-500">
+            {line.content}
+          </div>
+        );
+
+      case 'flag':
+        return (
+          <div key={idx} className="my-3">
+            <div className="bg-gradient-to-r from-green-500/20 to-transparent border-l-4 border-green-500 p-4 rounded animate-pulse">
+              <div className="flex items-center gap-3">
+                <span className="text-3xl">🚩</span>
+                <div>
+                  <div className="text-green-400 font-semibold text-lg mb-1">FLAG CAPTURED!</div>
+                  <code className="text-green-300 text-base font-mono">
+                    {line.metadata?.flag}
+                  </code>
+                  <div className="text-gray-400 text-xs mt-2">
+                    Copy this flag and submit it to earn points!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      default:
+        return (
+          <div key={idx} className="text-green-400 whitespace-pre-wrap text-sm">
+            {line.content}
+          </div>
+        );
+    }
   };
 
   return (
@@ -78,14 +189,16 @@ export function ExecutionPanel({ attack, execution, onClose }: ExecutionPanelPro
               {/* Description */}
               <div>
                 <h3 className="text-cs-white font-semibold mb-2 text-sm">Description</h3>
-                <p className="text-cs-gray text-sm">{attack.description}</p>
+                <p className="text-cs-gray text-xs leading-relaxed">
+                  {attack.description}
+                </p>
               </div>
 
               {/* Severity */}
               <div>
                 <h3 className="text-cs-white font-semibold mb-2 text-sm">Severity</h3>
                 <span
-                  className={`inline-block px-3 py-1 rounded text-sm font-semibold ${
+                  className={`px-3 py-1 rounded text-xs font-semibold ${
                     attack.severity === 'CRITICAL'
                       ? 'bg-red-500/20 text-red-400'
                       : attack.severity === 'HIGH'
@@ -179,17 +292,24 @@ export function ExecutionPanel({ attack, execution, onClose }: ExecutionPanelPro
             </div>
           </div>
 
-          {/* Right Panel: Terminal Output */}
+          {/* Right Panel: Terminal Output with Stage Header */}
           <div className="flex-1 flex flex-col bg-cs-darker">
-            <div className="border-b border-cs-dark px-4 py-2 flex items-center justify-between">
-              <span className="text-cs-white text-sm font-mono">Output</span>
-              <span className="text-cs-gray text-xs">
-                {output.length} {output.length === 1 ? 'line' : 'lines'}
-              </span>
-            </div>
+            {/* Current Stage Header (sticky) */}
+            {status === 'running' && totalStages > 0 && (
+              <CurrentStageHeader
+                stageNumber={currentStage.stageNumber}
+                totalStages={totalStages}
+                stageTitle={currentStage.stageTitle}
+                currentCommand={currentStage.command}
+                elapsedTime={elapsedSeconds}
+              />
+            )}
+
+            {/* Terminal Output */}
             <div
               ref={outputRef}
-              className="flex-1 overflow-y-auto p-4 font-mono text-sm"
+              onScroll={handleScroll}
+              className="flex-1 overflow-y-auto p-4 font-mono text-sm relative"
               style={{ backgroundColor: '#0a0a0a' }}
             >
               {output.length === 0 && status === 'running' ? (
@@ -198,11 +318,25 @@ export function ExecutionPanel({ attack, execution, onClose }: ExecutionPanelPro
                   Waiting for output...
                 </div>
               ) : (
-                output.map((line, idx) => (
-                  <div key={idx} className="text-green-400 whitespace-pre-wrap">
-                    {line}
-                  </div>
-                ))
+                parsedLines.map((line, idx) => renderTerminalLine(line, idx))
+              )}
+
+              {/* Scroll to bottom hint */}
+              {isUserScrolling && status === 'running' && (
+                <button
+                  onClick={() => {
+                    setIsUserScrolling(false);
+                    if (outputRef.current) {
+                      outputRef.current.scrollTop = outputRef.current.scrollHeight;
+                    }
+                  }}
+                  className="fixed bottom-8 right-8 bg-cs-red text-white px-4 py-2 rounded-lg shadow-lg flex items-center gap-2 hover:bg-cs-red/80 transition-colors"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                  Scroll to Bottom
+                </button>
               )}
             </div>
           </div>
