@@ -1,1 +1,79 @@
+# Operating System Files
 **/.DS_Store
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Build Artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+dist/
+build/
+target/
+
+# Go specific
+vendor/
+*.log
+
+# Node.js / Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+frontend/.env.local
+frontend/.env.*.local
+
+# Docker
+.dockerignore
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.orig
+
+# Test coverage
+*.cover
+coverage/
+.nyc_output/
+
+# Logs
+logs/
+*.log
+
+# Environment variables (if any secrets)
+.env
+.env.local
+.env.*.local
+
+# macOS specific
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Claude Code project files
+.claude/
+
+# Optional: Keep documentation but ignore work-in-progress
+# WIP-*.md

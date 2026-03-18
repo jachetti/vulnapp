@@ -19,6 +19,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/msoap/shell2http/backend"
 	"github.com/mattn/go-shellwords"
 	"github.com/msoap/raphanus"
 	raphanuscommon "github.com/msoap/raphanus/common"
@@ -28,7 +29,7 @@ var version = "dev"
 
 const (
 	// defaultPort - default port for http-server
-	defaultPort = 8080
+	defaultPort = 80
 
 	// shBasicAuthVar - name of env var for basic auth credentials
 	shBasicAuthVar = "SH_BASIC_AUTH"
@@ -677,6 +678,84 @@ func main() {
 		http.HandleFunc(handler.path, handlerFunc)
 		log.Printf("register: %s (%s)\n", handler.path, handler.cmd)
 	}
+
+	// Setup API handlers for modern React frontend
+	apiHandler := backend.NewAPIHandler()
+
+	// API routes
+	http.HandleFunc("/api/attacks", apiHandler.HandleGetAttacks)
+	http.HandleFunc("/api/attacks/", func(w http.ResponseWriter, r *http.Request) {
+		// Route to specific attack or execute
+		if strings.HasSuffix(r.URL.Path, "/execute") {
+			apiHandler.HandleExecuteAttack(w, r)
+		} else {
+			apiHandler.HandleGetAttackByID(w, r)
+		}
+	})
+	http.HandleFunc("/api/executions", apiHandler.HandleGetExecutions)
+	http.HandleFunc("/api/executions/", func(w http.ResponseWriter, r *http.Request) {
+		// Check if it's a stream request
+		if strings.HasSuffix(r.URL.Path, "/stream") {
+			apiHandler.GetWebSocketHandler().HandleExecutionStream(w, r)
+		} else {
+			apiHandler.HandleGetExecution(w, r)
+		}
+	})
+	http.HandleFunc("/api/health", apiHandler.HandleHealth)
+	http.HandleFunc("/api/system/info", apiHandler.HandleSystemInfo)
+
+	// Vulnerable endpoints (Phase 5 - Interactive scenarios)
+	http.HandleFunc("/api/vulnerable/rce", apiHandler.HandleVulnerableRCE)
+	http.HandleFunc("/api/vulnerable/lfi", apiHandler.HandleVulnerableLFI)
+	http.HandleFunc("/api/vulnerable/reverse-shell", apiHandler.HandleVulnerableReverseShell)
+	http.HandleFunc("/api/vulnerable/sqli", apiHandler.HandleVulnerableSQL)
+
+	log.Println("API routes registered:")
+	log.Println("  GET  /api/attacks")
+	log.Println("  GET  /api/attacks/:id")
+	log.Println("  POST /api/attacks/:id/execute")
+	log.Println("  GET  /api/executions")
+	log.Println("  GET  /api/executions/:id")
+	log.Println("  GET  /api/executions/:id/stream (WebSocket)")
+	log.Println("  GET  /api/health")
+	log.Println("  GET  /api/system/info")
+	log.Println("Vulnerable endpoints:")
+	log.Println("  GET  /api/vulnerable/rce")
+	log.Println("  GET  /api/vulnerable/lfi")
+	log.Println("  POST /api/vulnerable/reverse-shell")
+	log.Println("  GET  /api/vulnerable/sqli")
+
+	// Serve static files for React frontend
+	staticDir := "/static"
+	if _, err := os.Stat(staticDir); err == nil {
+		// Serve static files (JS, CSS, etc.)
+		http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir(staticDir))))
+
+		// Serve index.html for root and any non-API routes (SPA routing)
+		indexHandler := func(w http.ResponseWriter, r *http.Request) {
+			http.ServeFile(w, r, staticDir+"/index.html")
+		}
+
+		// Override default "/" handler to serve React app
+		http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+			// If requesting root or no match, serve React app
+			if r.URL.Path == "/" || (!strings.HasPrefix(r.URL.Path, "/api/") && !strings.HasPrefix(r.URL.Path, "/images/")) {
+				// Check if file exists in static dir
+				filePath := staticDir + r.URL.Path
+				if _, err := os.Stat(filePath); err == nil {
+					http.ServeFile(w, r, filePath)
+				} else {
+					// Fallback to index.html for SPA routing
+					indexHandler(w, r)
+				}
+			}
+		})
+		log.Printf("Serving React frontend from %s\n", staticDir)
+	} else {
+		log.Printf("Static directory %s not found, React frontend not available\n", staticDir)
+	}
+
+	// Serve images
 	fs := http.FileServer(http.Dir("/images"))
 	http.Handle("/images/", http.StripPrefix("/images/", fs))
 

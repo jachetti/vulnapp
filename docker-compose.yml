@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  vulnapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vulnapp
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    environment:
+      # Optional environment variables
+      - LOG_LEVEL=info
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost/api/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+    # Optional: Mount Docker socket for Docker Socket Exploitation attack
+    # WARNING: Only enable in isolated lab environments!
+    # volumes:
+    #   - /var/run/docker.sock:/var/run/docker.sock
+    # Optional: Run in privileged mode for container escape demos
+    # WARNING: Only enable in isolated lab environments!
+    # privileged: true
+    # Optional: Add specific capabilities for capability abuse demos
+    # cap_add:
+    #   - SYS_ADMIN
+    #   - SYS_PTRACE
+    #   - DAC_READ_SEARCH
+    networks:
+      - vulnapp-net
+
+networks:
+  vulnapp-net:
+    driver: bridge
