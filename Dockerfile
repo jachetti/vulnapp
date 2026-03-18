@@ -66,7 +66,7 @@ LABEL org.opencontainers.image.description="VulnApp v2.0 - Container Security Te
 LABEL org.opencontainers.image.version="2.0.0"
 
 # Create necessary directories
-RUN mkdir -p /static /bin/existing /bin/modern /bin/chains /images /home/eval
+RUN mkdir -p /static /bin/existing /bin/modern /bin/chains /bin/learning /images /home/eval
 
 # Copy Go binary from backend builder
 COPY --from=backend-builder /shell2http /shell2http
@@ -78,9 +78,10 @@ COPY --from=frontend-builder /frontend/dist/ /static/
 COPY bin/existing/ /bin/existing/
 COPY bin/modern/ /bin/modern/
 COPY bin/chains/ /bin/chains/
+COPY bin/learning/ /bin/learning/
 
 # Make scripts executable
-RUN chmod +x /bin/existing/*.sh /bin/modern/*.sh /bin/chains/*.sh
+RUN chmod +x /bin/existing/*.sh /bin/modern/*.sh /bin/chains/*.sh /bin/learning/*.sh
 
 # Copy images
 COPY images/ /images/
