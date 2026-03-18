@@ -666,6 +666,12 @@ func main() {
 		log.Fatal(err)
 	}
 	for _, handler := range cmdHandlers {
+		// Skip registering "/" here - it will be registered later for the React app
+		if handler.path == "/" {
+			log.Printf("Skipping registration of %s (%s) - will be handled by React frontend\n", handler.path, handler.cmd)
+			continue
+		}
+
 		handlerFunc := handler.handler
 		if len(appConfig.auth.users) > 0 {
 			handlerFunc = mwBasicAuth(handlerFunc, appConfig.auth)
