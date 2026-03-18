@@ -19,7 +19,7 @@ echo "API: http://localhost/api/"
 echo ""
 
 # Execute shell2http with all attack routes
-exec /shell2http -port 80 -show-errors -include-stderr \
+exec /shell2http -port 80 -show-errors -include-stderr -no-index \
     /ps "ps aux" \
     \
     `# ========== EXISTING ATTACKS (12) ==========` \
