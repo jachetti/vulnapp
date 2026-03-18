@@ -481,7 +481,7 @@ var AllAttacks = []AttackScenario{
 		Description: "Multi-stage enumeration and data exfiltration: Tool Download → Execution → Data Collection → C2 Beacon. Downloads enumeration tools (LinPEAS, LSE, mimipenguin), executes them, collects sensitive data, and attempts exfiltration. Generates 8-12 detections.",
 		ScriptPath:  "/bin/chains/Enumeration_And_Exfiltration.sh",
 		MitreTactics: []string{"TA0007", "TA0009", "TA0010", "TA0011"},
-		MitreTechnique: []MitreTechnique{
+		MitreTechniques: []MitreTechnique{
 			{ID: "T1005", Name: "Data from Local System"},
 			{ID: "T1083", Name: "File and Directory Discovery"},
 			{ID: "T1552.001", Name: "Unsecured Credentials: Credentials In Files"},
