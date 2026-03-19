@@ -58,6 +58,19 @@ export function ExecutionPanel({ attack, execution, onClose }: ExecutionPanelPro
     }
   }, [output, isUserScrolling]);
 
+  // Force scroll to bottom when execution completes (to show flag)
+  useEffect(() => {
+    if (status === 'completed' && outputRef.current) {
+      // Force scroll after a brief delay to ensure all output is rendered
+      setTimeout(() => {
+        if (outputRef.current) {
+          setIsUserScrolling(false); // Reset user scrolling flag
+          outputRef.current.scrollTop = outputRef.current.scrollHeight;
+        }
+      }, 200);
+    }
+  }, [status]);
+
   // Detect user scrolling
   const handleScroll = () => {
     if (outputRef.current) {

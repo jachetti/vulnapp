@@ -11,7 +11,7 @@ export const ProgressHeader: React.FC = () => {
   const totalPoints = progress.total_points;
   const solvedCount = progress.solved_scenarios.length;
   const maxPoints = 1000;
-  const maxScenarios = 17;
+  const maxScenarios = 7;
   const progressPercentage = (totalPoints / maxPoints) * 100;
   const isCertified = totalPoints >= maxPoints;
 
