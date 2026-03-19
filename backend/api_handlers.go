@@ -44,7 +44,7 @@ func (h *APIHandler) HandleGetAttacks(w http.ResponseWriter, r *http.Request) {
 
 	response := map[string]interface{}{
 		"attacks":    AllAttacks,
-		"categories": GetAttacksByCategory(),
+		"categories": GetAllCategories(),
 		"count":      len(AllAttacks),
 	}
 
