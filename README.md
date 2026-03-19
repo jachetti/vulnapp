@@ -5,9 +5,9 @@
 [![Go Version](https://img.shields.io/badge/Go-1.23-00ADD8.svg)](go.mod)
 [![React](https://img.shields.io/badge/React-18.3-61DAFB.svg)](frontend/package.json)
 
-**An intentionally vulnerable container application for testing CrowdStrike Falcon sensor detection capabilities.**
+**An intentionally vulnerable container application with REAL EXPLOITATION for CrowdStrike Falcon sensor validation and security training.**
 
-VulnApp v2.0 is a modern, interactive web platform that demonstrates **17 container security attack scenarios** mapped to the MITRE ATT&CK framework. Perfect for security training, Falcon sensor validation, and container security research.
+VulnApp v2.0 is a modern, interactive web platform featuring **7 teaching scenarios with authentic CTF exploitation** mapped to the MITRE ATT&CK framework. Students discover flags through actual reconnaissance and exploitation techniques, not simulation.
 
 ---
 
@@ -31,13 +31,15 @@ VulnApp v2.0 is a modern, interactive web platform that demonstrates **17 contai
 
 ## 🎯 What's New in v2.0
 
+- 🔥 **REAL EXPLOITATION MODE** - Scenarios perform actual attacks, not simulations
+- 🚩 **Authentic CTF Experience** - Discover flags through genuine reconnaissance
 - ✨ **Modern React UI** - Interactive web interface with real-time execution
-- 🎓 **17 Total Scenarios** - 7 Learning + 10 Detection = Complete CTF Experience
-- 🚩 **Full CTF Gamification** - Every scenario has a flag worth 1,000 total points
+- 🎓 **7 Teaching Scenarios** - Progressive learning path with 1,000 total points
 - 🏆 **SE Certification** - Complete all scenarios for Container Security SE badge
 - 📊 **MITRE ATT&CK Integration** - Visual technique mappings and badges
 - 🔴 **WebSocket Streaming** - Live attack output in terminal-style display
 - 📈 **Progress Tracking** - Track points, scenarios completed, and certification status
+- 🔧 **Auto Setup/Cleanup** - Vulnerabilities planted and removed automatically
 - 🐳 **Docker Ready** - Optimized multi-stage build
 - 📱 **Responsive Design** - Works on desktop, tablet, and mobile
 
@@ -85,10 +87,14 @@ docker stop vulnapp
 docker start vulnapp
 ```
 
-**Kubernetes**
+**Kubernetes (⚠️ REQUIRES ISOLATED LAB)**
 ```bash
+# WARNING: This config is INTENTIONALLY VULNERABLE
+# Includes: privileged mode, host mounts, dangerous capabilities
+# Deploy ONLY in isolated lab environments!
+
 kubectl apply -f https://raw.githubusercontent.com/jachetti/vulnapp/main/vulnerable.example.yaml
-kubectl get service vulnapp
+kubectl get service vulnerable-example-com
 ```
 
 **OpenShift**
@@ -109,87 +115,65 @@ oc get route vulnapp
 - **Category Filtering** - Browse by MITRE ATT&CK tactic
 - **Mobile Responsive** - Works on all devices
 
-### 🎓 Learning Scenarios (SE Training Mode)
+### 🎓 Teaching Scenarios with Real Exploitation
 
-**7 Progressive Scenarios for Office Hours Training:**
+**7 Progressive Scenarios with AUTHENTIC CTF Exploitation:**
 
-Perfect for CrowdStrike endpoint SEs learning container security. Each scenario bridges familiar endpoint security concepts to container-specific attacks with CTF-style flags and business impact examples.
+Perfect for CrowdStrike SEs learning container security. Each scenario **performs real exploitation** to discover flags through actual reconnaissance techniques. No simulation - students practice genuine attack methods in a controlled environment.
 
-**Total: 500 Points (Part 1 of 2)**
+**Total: 1,000 Points**
 
-| # | Scenario | Points | Duration | Key Concept |
-|---|----------|--------|----------|-------------|
-| 1 | Remote Access Shell | 50 | 5 min | Containers are processes |
-| 2 | Process Discovery | 50 | 5 min | Namespace isolation |
-| 3 | Data Collection & Exfiltration | 75 | 7 min | Data theft impact |
-| 4 | Container Escape ⭐ | 100 | 7 min | THE key differentiator |
-| 5 | Persistence Establishment | 75 | 8 min | Long-term threats |
-| 7 | Defense Evasion & Masquerading | 50 | 6 min | Behavior-based detection |
-| 6 | Full Attack Chain (Master Level) | 100 | 10 min | Complete breach simulation |
+| # | Scenario | Real Exploitation | Points | Key Concept |
+|---|----------|-------------------|--------|-------------|
+| 1 | Remote Access Shell | Search `/proc/<PID>/environ` for hidden flag | 100 | Containers are processes |
+| 2 | Process Discovery | Find flag in hidden process command line | 150 | Namespace isolation |
+| 3 | Data Collection & Exfiltration | Extract flag from fake AWS credentials | 150 | Data theft impact |
+| 4 | Container Escape ⭐ | **Actually escape** to read flag on host | 200 | THE key differentiator |
+| 5 | Persistence Establishment | Install real backdoor to reveal flag | 150 | Long-term threats |
+| 6 | Defense Evasion & Masquerading | Masquerade process to access flag | 100 | Behavior-based detection |
+| 7 | Full Attack Chain (Master Level) | Multi-stage exploitation for final flag | 150 | Complete breach simulation |
+
+**How It Works:**
+1. **Setup Script** - Plants flags and vulnerabilities before scenario
+2. **Main Scenario** - Student performs REAL exploitation techniques
+3. **Cleanup Script** - Removes all artifacts after completion
 
 **Features:**
-- 🚩 CTF flag submission with point tracking
-- 📊 Progress tracking (X/1000 points, X/17 scenarios)
-- 💼 Business impact metrics ($4.5M average breach cost)
-- 🗣️ SE talking points for customer conversations
-- 🎯 Falcon detection explanations in plain English
-- 🏆 Certification badge at 1,000 points (all 17 scenarios)
+- 🔥 **Real reconnaissance** - Students search `/proc`, enumerate processes, read files
+- 🚩 **Authentic flags** - Hidden in processes, credentials, host filesystem
+- 🔒 **Auto-cleanup** - All vulnerabilities removed after each scenario
+- 📊 **Progress tracking** - 1,000 points total across 7 scenarios
+- 🎯 **Genuine Falcon detections** - Real attacks trigger real detections
+- 🏆 **Certification badge** - Earned by completing all 7 scenarios
+
+**⚠️ REQUIRES:** Privileged containers with host mounts (see `vulnerable.example.yaml`)
 
 **Perfect for:**
-- SE office hours training (~45 minutes for learning scenarios)
-- Customer demos and workshops
-- POC validation scenarios
-- Team onboarding
+- SE office hours training (~60 minutes)
+- Customer demos with real exploitation
+- Hands-on container security workshops
+- Team onboarding with practical skills
 
-### 🔬 Detection Scenarios (Advanced Testing)
+### 🔬 Attack Scenarios by MITRE ATT&CK
 
-**10 Advanced Scenarios Showcasing Falcon Detection Capabilities:**
+**All 7 teaching scenarios mapped to MITRE ATT&CK techniques:**
 
-These scenarios demonstrate proven Falcon detections across all major threat categories. Perfect for technical validation and advanced SE training.
+1. **Remote Access Shell** (T1059.004, T1071.001) - Command execution and C2
+2. **Process Discovery** (T1613, T1082) - Container and system enumeration
+3. **Data Collection & Exfiltration** (T1005, T1552.007, T1048.003) - Credential theft
+4. **Container Escape** ⭐ (T1611) - **KEY DIFFERENTIATOR** - Privilege escalation
+5. **Persistence Establishment** (T1053.003, T1543.002) - Backdoor installation
+6. **Defense Evasion & Masquerading** (T1036, T1055) - Process hiding
+7. **Full Attack Chain** (T1190, T1059.004, T1613, T1552.007, T1611) - Multi-stage attack
 
-**Total: 500 Points (Part 2 of 2)**
-
-| # | Scenario | Category | Points | Key Detection |
-|---|----------|----------|--------|---------------|
-| 8 | Privileged Container Escape | Privilege Escalation | 75 | ContainerEscape (CRITICAL) |
-| 9 | Docker Socket Exploitation | Privilege Escalation | 75 | ContainerEscape, ExecutionLin |
-| 10 | Binary Masquerading | Defense Evasion | 50 | ExecutionLin |
-| 11 | Rootkit Installation | Defense Evasion | 50 | Rootkit detection |
-| 12 | C2 Remote Access | Command & Control | 50 | IntelDomainHigh |
-| 13 | Reverse Shell Trojan | Command & Control | 50 | BashReverseShell |
-| 14 | Container Drift | Impact & Detection | 50 | ContainerDrift |
-| 15 | Credential Dumping | Credential Access | 50 | Credential Access |
-| 16 | Full Breach Simulation | Multi-Stage Attack | 50 | 10-15 detections |
-| 17 | Enumeration & Exfiltration | Multi-Stage Attack | 50 | GenericDataCollection |
-
-**Combined Total: 17 Scenarios = 1,000 Points**
-
-See [bin/learning/README.md](bin/learning/README.md) for complete facilitator guide.
-
-### 17 Attack Scenarios by MITRE ATT&CK
-
-**All 17 scenarios generate proven Falcon detections:**
-
-**Learning Scenarios (7):**
-- Remote Access Shell (T1059.004, T1071.001)
-- Process Discovery (T1613, T1082)
-- Data Collection & Exfiltration (T1005, T1552.007, T1048.003)
-- Container Escape - KEY DIFFERENTIATOR ⭐ (T1611)
-- Persistence Establishment (T1053.003, T1543.002)
-- Defense Evasion & Masquerading (T1036, T1055)
-- Full Attack Chain - Master Level (T1190, T1059.004, T1613, T1552.007, T1611)
-
-**Detection Scenarios (10):**
-- Privileged Container Escape (T1611, T1068) - CRITICAL
-- Docker Socket Exploitation (T1611) - CRITICAL
-- Binary Masquerading (T1036)
-- Rootkit Installation (T1014)
-- C2 Remote Access (T1071.001)
-- Reverse Shell Trojan (T1059.004)
-- Container Drift Detection (T1612)
-- Credential Dumping (T1552.001, T1552.007)
-- Full Breach Simulation (Multi-tactic attack)
-- Enumeration & Exfiltration Chain (T1082, T1005, T1048)
+**Expected Falcon Detections:**
+- ✅ BashReverseShell (Scenario 1)
+- ✅ ContainerDiscovery (Scenario 2)
+- ✅ CredentialAccess (Scenario 3)
+- ✅ **ContainerEscape** (Scenario 4) ⭐ **CRITICAL**
+- ✅ PersistenceTechnique (Scenario 5)
+- ✅ ProcessMasquerading (Scenario 6)
+- ✅ Multiple detections (Scenario 7)
 
 ### API & Integration
 - **8 REST endpoints** - Attack management and execution
@@ -202,13 +186,13 @@ See [bin/learning/README.md](bin/learning/README.md) for complete facilitator gu
 
 ## 📖 Documentation
 
+- **[Real Exploitation Guide](REAL_EXPLOITATION_GUIDE.md)** - 🔥 **START HERE** - Complete exploitation guide with safety warnings
+- **[Implementation Summary](IMPLEMENTATION_SUMMARY.md)** - What was built and how to use it
+- **[7 Scenario POC Plan](7_SCENARIO_POC_PLAN.md)** - Implementation roadmap
 - **[Learning Scenarios Guide](bin/learning/README.md)** - SE training scenarios and facilitator guide
-- **[Test Guide](TEST_GUIDE.md)** - Complete testing checklist for v2.0 features
-- **[Scenario Recommendations](SCENARIO_RECOMMENDATIONS.md)** - Analysis of scenario structure
 - **[Docker Guide](DOCKER_GUIDE.md)** - Comprehensive Docker documentation
+- **[Test Guide](TEST_GUIDE.md)** - Complete testing checklist
 - **[Frontend README](frontend/README.md)** - React development guide
-- **[Implementation Complete](IMPLEMENTATION_COMPLETE.md)** - Full feature list
-- **[Test Report](TEST_REPORT.md)** - Testing results (41/41 passed)
 
 ---
 
@@ -325,20 +309,35 @@ cd vulnapp
 
 ## 🧪 Usage Examples
 
-### Example 1: Learning Mode (SE Training)
+### Example 1: Real Exploitation Mode (SE Training)
 
-**Perfect for office hours and team training:**
+**Perfect for hands-on security training:**
 
-1. Open web interface: `http://localhost`
-2. Click "Learning Scenarios (6)" tab
-3. Start with Scenario 1: Remote Access Shell
-4. Watch enhanced terminal output with stage headers
-5. Find the CTF flag in the output (e.g., `FLAG{reverse_shell_works_same_in_containers}`)
-6. Submit the flag to earn 50 points
-7. Progress to next scenario
-8. Collect all 6 flags to earn 1,000 points and certification! 🏆
+1. **Deploy with vulnerable config**: `kubectl apply -f vulnerable.example.yaml`
+2. Open web interface: `http://localhost` or LoadBalancer IP
+3. **Start with Scenario 1: Remote Access Shell**
+4. Watch terminal output as the scenario:
+   - Runs setup script (plants flag in process)
+   - Performs REAL reconnaissance (`ps aux`, search `/proc`)
+   - Discovers hidden flag in process environment
+   - Displays: `FLAG{reverse_shell_works_same_in_containers}`
+   - Runs cleanup script (removes artifacts)
+5. **Submit the flag** to earn 100 points
+6. **Progress through all 7 scenarios**
+7. **Earn certification** at 1,000 points! 🏆
 
-**Session time:** ~45 minutes for all 6 scenarios
+**Session time:** ~60 minutes for all 7 scenarios
+
+**Example Terminal Output:**
+```
+[SETUP] Flag planted in process environment (PID: 1234)
+[+] Searching for interesting processes...
+[+] Found suspicious process: PID 1234
+[+] Reading process environment...
+FLAG_CREDENTIAL=FLAG{reverse_shell_works_same_in_containers}
+🚩 FLAG CAPTURED!
+[CLEANUP] Scenario cleanup complete
+```
 
 ### Example 2: Basic Attack Execution
 
@@ -520,18 +519,18 @@ Apache License 2.0 - See [LICENSE](LICENSE) for details.
 
 ## 🗺️ Version History
 
-### v2.0.0 (2024)
+### v2.0.0 (2026)
+- 🔥 **REAL EXPLOITATION MODE** - Scenarios perform actual attacks with authentic flags
+- 🚩 **7 Teaching Scenarios** - Progressive learning path with 1,000 points
+- 🔧 **Auto Setup/Cleanup** - Vulnerabilities planted and removed automatically
 - ✨ Complete UI rewrite with React 18.3 + TypeScript
-- 🎓 6 progressive learning scenarios for SE training (CTF-style with 1,000 points)
 - 🏆 Progress tracking with flag submission and certification
-- 🚀 12 new modern container threat scenarios
-- 📊 MITRE ATT&CK integration
-- 🔴 Real-time WebSocket streaming
-- 🎯 Interactive LAN testing features
-- 🐳 Multi-stage Docker build
+- 📊 MITRE ATT&CK integration with visual badges
+- 🔴 Real-time WebSocket streaming for live output
+- 🐳 Multi-stage Docker build (Go + Node + Runtime)
 - 📱 Responsive mobile design
-- 🔧 Port 80 deployment
-- 📖 Comprehensive documentation
+- 🔧 Port 80 deployment for production readiness
+- 📖 Comprehensive exploitation guide and documentation
 
 ### v1.0.0
 - Initial release with basic attack scenarios
