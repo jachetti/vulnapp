@@ -32,10 +32,12 @@ VulnApp v2.0 is a modern, interactive web platform that demonstrates **24 contai
 ## 🎯 What's New in v2.0
 
 - ✨ **Modern React UI** - Interactive web interface with real-time execution
+- 🎓 **6 Learning Scenarios** - Progressive CTF-style training for SE education (1,000 points)
 - 🚀 **24 Attack Scenarios** - 12 classic + 12 modern container threats (2024-2026)
 - 📊 **MITRE ATT&CK Integration** - Visual technique mappings and badges
 - 🔴 **WebSocket Streaming** - Live attack output in terminal-style display
 - 🎯 **Interactive Scenarios** - Reverse shell forms for LAN testing
+- 🏆 **Progress Tracking** - CTF flag submission with points and certification
 - 🐳 **Docker Ready** - Optimized multi-stage build
 - 📱 **Responsive Design** - Works on desktop, tablet, and mobile
 
@@ -94,6 +96,39 @@ oc get route vulnapp
 - **Category Filtering** - Browse by MITRE ATT&CK tactic
 - **Mobile Responsive** - Works on all devices
 
+### 🎓 Learning Scenarios (SE Training Mode)
+
+**6 Progressive Scenarios for Office Hours Training:**
+
+Perfect for CrowdStrike endpoint SEs learning container security. Each scenario bridges familiar endpoint security concepts to container-specific attacks with CTF-style flags and business impact examples.
+
+**Total: 1,000 Points**
+
+| Scenario | Points | Duration | Flag |
+|----------|--------|----------|------|
+| 1. Remote Access Shell | 50 | 5 min | Containers are processes |
+| 2. Process Discovery | 50 | 5 min | Namespace isolation |
+| 3. Data Collection & Exfiltration | 100 | 7 min | $147M breach simulation |
+| 4. Container Escape ⭐ | 150 | 7 min | THE key differentiator |
+| 5. Persistence Establishment | 200 | 8 min | Long-term threats & dwell time |
+| 6. Full Attack Chain | 450 | 10 min | Complete breach timeline |
+
+**Features:**
+- 🚩 CTF flag submission with point tracking
+- 📊 Progress tracking (X/1000 points, X/6 scenarios)
+- 💼 Business impact metrics ($4.5M average breach cost)
+- 🗣️ SE talking points for customer conversations
+- 🎯 Falcon detection explanations in plain English
+- 🏆 Certification badge at 1,000 points
+
+**Perfect for:**
+- SE office hours training (60 minutes total)
+- Customer demos and workshops
+- POC validation scenarios
+- Team onboarding
+
+See [bin/learning/README.md](bin/learning/README.md) for complete facilitator guide.
+
 ### 24 Attack Scenarios
 
 **Existing Attacks (12):**
@@ -135,6 +170,9 @@ oc get route vulnapp
 
 ## 📖 Documentation
 
+- **[Learning Scenarios Guide](bin/learning/README.md)** - SE training scenarios and facilitator guide
+- **[Test Guide](TEST_GUIDE.md)** - Complete testing checklist for v2.0 features
+- **[Scenario Recommendations](SCENARIO_RECOMMENDATIONS.md)** - Analysis of scenario structure
 - **[Docker Guide](DOCKER_GUIDE.md)** - Comprehensive Docker documentation
 - **[Frontend README](frontend/README.md)** - React development guide
 - **[Implementation Complete](IMPLEMENTATION_COMPLETE.md)** - Full feature list
@@ -146,13 +184,15 @@ oc get route vulnapp
 
 ### REST APIs
 ```
-GET  /api/attacks              - List all 24 attacks with metadata
-GET  /api/attacks/:id          - Get specific attack details
-POST /api/attacks/:id/execute  - Execute attack scenario
-GET  /api/executions           - List all executions
-GET  /api/executions/:id       - Get execution status and output
-GET  /api/health               - Health check
-GET  /api/system/info          - System information
+GET  /api/attacks                  - List all attacks with metadata
+GET  /api/attacks/:id              - Get specific attack details
+POST /api/attacks/:id/execute      - Execute attack scenario
+GET  /api/executions               - List all executions
+GET  /api/executions/:id           - Get execution status and output
+GET  /api/health                   - Health check
+GET  /api/system/info              - System information
+POST /api/progress/submit-flag     - Submit CTF flag (Learning Mode)
+GET  /api/progress?session_id=xxx  - Get user progress (Learning Mode)
 ```
 
 ### WebSocket
@@ -241,14 +281,29 @@ docker run -p 80:80 vulnapp:2.0
 
 ## 🧪 Usage Examples
 
-### Example 1: Basic Attack Execution
+### Example 1: Learning Mode (SE Training)
+
+**Perfect for office hours and team training:**
+
+1. Open web interface: `http://localhost`
+2. Click "Learning Scenarios (6)" tab
+3. Start with Scenario 1: Remote Access Shell
+4. Watch enhanced terminal output with stage headers
+5. Find the CTF flag in the output (e.g., `FLAG{reverse_shell_works_same_in_containers}`)
+6. Submit the flag to earn 50 points
+7. Progress to next scenario
+8. Collect all 6 flags to earn 1,000 points and certification! 🏆
+
+**Session time:** ~45 minutes for all 6 scenarios
+
+### Example 2: Basic Attack Execution
 
 1. Open web interface: `http://localhost`
 2. Browse attack grid organized by MITRE category
 3. Click "Execute ▶" on any attack
 4. View real-time output in split-view panel
 
-### Example 2: Interactive Reverse Shell (LAN Testing)
+### Example 3: Interactive Reverse Shell (LAN Testing)
 
 **Perfect for Docker + LAN environments:**
 
@@ -264,7 +319,7 @@ nc -lvnp 4444
 4. Click "🚀 Launch Exploitation Chain"
 5. Receive shell on attacker machine!
 
-### Example 3: Docker Socket Exploitation
+### Example 4: Docker Socket Exploitation
 
 ```bash
 # Run with Docker socket mounted
@@ -278,7 +333,7 @@ docker run -p 80:80 \
 2. Click "Execute"
 3. Watch live terminal output as attack demonstrates host escape
 
-### Example 4: Privileged Container Testing
+### Example 5: Privileged Container Testing
 
 ```bash
 # Run in privileged mode
@@ -311,25 +366,33 @@ All 24 attacks mapped to MITRE ATT&CK framework:
 
 ## 🏢 Use Cases
 
-### 1. CrowdStrike Falcon Validation
+### 1. SE Training & Office Hours
+- 6 progressive learning scenarios with CTF flags
+- Bridges endpoint security knowledge to containers
+- Business impact examples ($147M breach simulation)
+- SE talking points for customer conversations
+- 1-hour training session (45 min scenarios + 15 min presentation)
+- Certification badge upon completion
+
+### 2. CrowdStrike Falcon Validation
 - Deploy in test environment with Falcon sensor
 - Execute attack scenarios
 - Validate Falcon detections in console
 - Tune detection policies
 
-### 2. Security Training
+### 3. Security Training
 - Hands-on container security training
 - MITRE ATT&CK technique demonstrations
 - Attack chain visualization
 - Detection engineering practice
 
-### 3. Research & Development
+### 4. Research & Development
 - Container escape research
 - Kubernetes security testing
 - Detection capability validation
 - Red team scenario development
 
-### 4. CI/CD Pipeline Testing
+### 5. CI/CD Pipeline Testing
 - Automated security testing
 - Detection rule validation
 - Sensor deployment verification
@@ -415,6 +478,8 @@ Apache License 2.0 - See [LICENSE](LICENSE) for details.
 
 ### v2.0.0 (2024)
 - ✨ Complete UI rewrite with React 18.3 + TypeScript
+- 🎓 6 progressive learning scenarios for SE training (CTF-style with 1,000 points)
+- 🏆 Progress tracking with flag submission and certification
 - 🚀 12 new modern container threat scenarios
 - 📊 MITRE ATT&CK integration
 - 🔴 Real-time WebSocket streaming
