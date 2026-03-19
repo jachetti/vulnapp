@@ -13,7 +13,7 @@ export function Header() {
           <span className="ml-2 text-cs-gray text-sm font-mono">v2.0</span>
           <div className="ml-auto flex items-center gap-4">
             <span className="text-cs-gray text-sm">
-              Container Security Testing Platform
+              CTF Security Training Platform
             </span>
           </div>
         </div>
