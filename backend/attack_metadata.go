@@ -361,7 +361,7 @@ var AllAttacks = []AttackScenario{
 		ID:          "learn-01-remote-shell",
 		Name:        "🎓 Scenario 1: Remote Access Shell (50 pts)",
 		Category:    "Learning Scenarios",
-		Description: "Map endpoint knowledge to containers. Shows that reverse shells work identically in containers as on traditional endpoints. Teaches: Containers are just processes. Flag: FLAG{reverse_shell_works_same_in_containers}",
+		Description: "Map endpoint knowledge to containers. Shows that reverse shells work identically in containers as on traditional endpoints. Teaches: Containers are just processes.",
 		ScriptPath:  "/bin/learning/01_Remote_Access_Shell.sh",
 		MitreTactics: []string{"TA0011"},
 		MitreTechniques: []MitreTechnique{
@@ -377,7 +377,7 @@ var AllAttacks = []AttackScenario{
 		ID:          "learn-02-process-discovery",
 		Name:        "🎓 Scenario 2: Process Discovery (50 pts)",
 		Category:    "Learning Scenarios",
-		Description: "Reconnaissance looks the same, but container boundaries matter. Shows namespace isolation, Docker socket detection, K8s discovery. Teaches: Same commands, limited visibility. Flag: FLAG{discovered_container_boundaries_and_limits}",
+		Description: "Reconnaissance looks the same, but container boundaries matter. Shows namespace isolation, Docker socket detection, K8s discovery. Teaches: Same commands, limited visibility.",
 		ScriptPath:  "/bin/learning/02_Process_Discovery.sh",
 		MitreTactics: []string{"TA0007"},
 		MitreTechniques: []MitreTechnique{
@@ -393,7 +393,7 @@ var AllAttacks = []AttackScenario{
 		ID:          "learn-03-data-collection",
 		Name:        "🎓 Scenario 3: Data Collection & Exfiltration (100 pts)",
 		Category:    "Learning Scenarios",
-		Description: "Shows data theft business impact. Credential hunting, data staging, tool downloads, C2 beacons. Simulated stolen data worth $147M. Teaches: Why customers care about detection speed. Flag: FLAG{credentials_stolen_data_staged_for_exfiltration}",
+		Description: "Shows data theft business impact. Credential hunting, data staging, tool downloads, C2 beacons. Simulated stolen data worth $147M. Teaches: Why customers care about detection speed.",
 		ScriptPath:  "/bin/learning/03_Data_Collection_Exfiltration.sh",
 		MitreTactics: []string{"TA0006", "TA0009", "TA0011"},
 		MitreTechniques: []MitreTechnique{
@@ -410,7 +410,7 @@ var AllAttacks = []AttackScenario{
 		ID:          "learn-04-container-escape",
 		Name:        "🎓 Scenario 4: Container Escape (150 pts)",
 		Category:    "Learning Scenarios",
-		Description: "THE key difference - breaking container isolation. This attack doesn't exist on traditional endpoints! Shows: chroot escape, privileged containers, misconfigurations. Flag: FLAG{container_isolation_bypassed_welcome_to_host}",
+		Description: "THE key difference - breaking container isolation. This attack doesn't exist on traditional endpoints! Shows: chroot escape, privileged containers, misconfigurations.",
 		ScriptPath:  "/bin/learning/04_Container_Escape.sh",
 		MitreTactics: []string{"TA0004"},
 		MitreTechniques: []MitreTechnique{
@@ -425,7 +425,7 @@ var AllAttacks = []AttackScenario{
 		ID:          "learn-05-persistence",
 		Name:        "🎓 Scenario 5: Persistence Establishment (200 pts)",
 		Category:    "Learning Scenarios",
-		Description: "Backdoor techniques and long-term threats. Binary masquerading, C2 beacons, host filesystem backdoors, K8s DaemonSets, supply chain poisoning. Teaches: Dwell time costs ($4.5M). Flag: FLAG{backdoors_established_attacker_can_return_anytime}",
+		Description: "Backdoor techniques and long-term threats. Binary masquerading, C2 beacons, host filesystem backdoors, K8s DaemonSets, supply chain poisoning. Teaches: Dwell time costs ($4.5M).",
 		ScriptPath:  "/bin/learning/05_Persistence_Establishment.sh",
 		MitreTactics: []string{"TA0003", "TA0005", "TA0011"},
 		MitreTechniques: []MitreTechnique{
@@ -442,7 +442,7 @@ var AllAttacks = []AttackScenario{
 		ID:          "learn-06-full-attack-chain",
 		Name:        "🎓 Scenario 6: Full Attack Chain (450 pts)",
 		Category:    "Learning Scenarios",
-		Description: "Master level combining all concepts. Web exploit → Container → Escape → Cloud compromise. Complete 10-minute breach timeline with business impact. Perfect for demonstrating why customers need Falcon Container Security. Flag: FLAG{from_web_vuln_to_cluster_admin_in_10_minutes}",
+		Description: "Master level combining all concepts. Web exploit → Container → Escape → Cloud compromise. Complete 10-minute breach timeline with business impact. Perfect for demonstrating why customers need Falcon Container Security.",
 		ScriptPath:  "/bin/learning/06_Full_Attack_Chain.sh",
 		MitreTactics: []string{"TA0001", "TA0007", "TA0006", "TA0004", "TA0011"},
 		MitreTechniques: []MitreTechnique{
