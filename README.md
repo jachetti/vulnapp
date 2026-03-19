@@ -127,7 +127,7 @@ Perfect for CrowdStrike SEs learning container security. Each scenario **perform
 |---|----------|-------------------|--------|-------------|
 | 1 | Remote Access Shell | Search `/proc/<PID>/environ` for hidden flag | 100 | Containers are processes |
 | 2 | Process Discovery | Find flag in hidden process command line | 150 | Namespace isolation |
-| 3 | Data Collection & Exfiltration | Extract flag from fake AWS credentials | 150 | Data theft impact |
+| 3 | Data Theft & Exfiltration | Extract flag from fake AWS credentials | 150 | Data theft impact |
 | 4 | Container Escape ⭐ | **Actually escape** to read flag on host | 200 | THE key differentiator |
 | 5 | Persistence Establishment | Install real backdoor to reveal flag | 150 | Long-term threats |
 | 6 | Defense Evasion & Masquerading | Masquerade process to access flag | 100 | Behavior-based detection |
@@ -160,7 +160,7 @@ Perfect for CrowdStrike SEs learning container security. Each scenario **perform
 
 1. **Remote Access Shell** (T1059.004, T1071.001) - Command execution and C2
 2. **Process Discovery** (T1613, T1082) - Container and system enumeration
-3. **Data Collection & Exfiltration** (T1005, T1552.007, T1048.003) - Credential theft
+3. **Data Theft & Exfiltration** (T1005, T1552.007, T1048.003) - Credential theft
 4. **Container Escape** ⭐ (T1611) - **KEY DIFFERENTIATOR** - Privilege escalation
 5. **Persistence Establishment** (T1053.003, T1543.002) - Backdoor installation
 6. **Defense Evasion & Masquerading** (T1036, T1055) - Process hiding

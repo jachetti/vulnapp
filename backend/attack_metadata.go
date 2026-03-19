@@ -32,6 +32,7 @@ var AllAttacks = []AttackScenario{
 	// Total: 1,000 points
 	// ==========================================================================
 
+	// Scenario 1
 	{
 		ID:          "learn-01-remote-shell",
 		Name:        "Remote Access Shell",
@@ -48,6 +49,8 @@ var AllAttacks = []AttackScenario{
 		Flag:     "FLAG{reverse_shell_works_same_in_containers}",
 		Points:   100,
 	},
+
+	// Scenario 2
 	{
 		ID:          "learn-02-process-discovery",
 		Name:        "Process Discovery",
@@ -64,21 +67,8 @@ var AllAttacks = []AttackScenario{
 		Flag:     "FLAG{discovered_container_boundaries_and_limits}",
 		Points:   150,
 	},
-	{
-		ID:          "learn-04-container-escape",
-		Name:        "Container Escape ⭐",
-		Category:    "Learning Scenarios",
-		Description: "THE KEY DIFFERENTIATOR: Containers are NOT VMs. Learn how attackers break out of container isolation to gain host access. This is what makes container security different from endpoint security. Teaches: Container escape techniques and why isolation matters.",
-		ScriptPath:  "/bin/learning/04_Container_Escape.sh",
-		MitreTactics: []string{"TA0004"},
-		MitreTechniques: []MitreTechnique{
-			{ID: "T1611", Name: "Escape to Host"},
-		},
-		Severity: "CRITICAL",
-		IsModern: true,
-		Flag:     "FLAG{container_isolation_bypassed_welcome_to_host}",
-		Points:   200,
-	},
+
+	// Scenario 3
 	{
 		ID:          "learn-03-data-collection",
 		Name:        "Data Theft & Exfiltration",
@@ -96,6 +86,25 @@ var AllAttacks = []AttackScenario{
 		Flag:     "FLAG{credentials_stolen_data_staged_for_exfiltration}",
 		Points:   150,
 	},
+
+	// Scenario 4
+	{
+		ID:          "learn-04-container-escape",
+		Name:        "Container Escape ⭐",
+		Category:    "Learning Scenarios",
+		Description: "THE KEY DIFFERENTIATOR: Containers are NOT VMs. Learn how attackers break out of container isolation to gain host access. This is what makes container security different from endpoint security. Teaches: Container escape techniques and why isolation matters.",
+		ScriptPath:  "/bin/learning/04_Container_Escape.sh",
+		MitreTactics: []string{"TA0004"},
+		MitreTechniques: []MitreTechnique{
+			{ID: "T1611", Name: "Escape to Host"},
+		},
+		Severity: "CRITICAL",
+		IsModern: true,
+		Flag:     "FLAG{container_isolation_bypassed_welcome_to_host}",
+		Points:   200,
+	},
+
+	// Scenario 5
 	{
 		ID:          "learn-05-persistence",
 		Name:        "Persistence Establishment",
@@ -112,8 +121,10 @@ var AllAttacks = []AttackScenario{
 		Flag:     "FLAG{backdoors_established_attacker_can_return_anytime}",
 		Points:   150,
 	},
+
+	// Scenario 6
 	{
-		ID:          "learn-07-defense-evasion",
+		ID:          "learn-06-defense-evasion",
 		Name:        "Defense Evasion & Masquerading",
 		Category:    "Learning Scenarios",
 		Description: "Attackers disguise malicious processes to evade detection. Learn why behavior-based detection beats signature-based for containers. Teaches: Process masquerading and why Falcon's ML approach works.",
@@ -128,8 +139,10 @@ var AllAttacks = []AttackScenario{
 		Flag:     "FLAG{svchost_exe_on_linux_fooled_nobody}",
 		Points:   100,
 	},
+
+	// Scenario 7
 	{
-		ID:          "learn-06-full-attack-chain",
+		ID:          "learn-07-full-attack-chain",
 		Name:        "Full Attack Chain - MASTER LEVEL",
 		Category:    "Learning Scenarios",
 		Description: "Complete attack simulation from web vulnerability to cluster admin in 10 minutes. This master-level scenario combines all learned techniques into a realistic attack chain. Teaches: How attacks progress through multiple stages.",
