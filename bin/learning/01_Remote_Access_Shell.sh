@@ -148,5 +148,13 @@ echo ""
 echo "🎯 Next Scenario: 'Process Discovery' (shows container enumeration)"
 echo ""
 echo "════════════════════════════════════════════════════════════════"
+echo ""
+echo "🚩 FLAG CAPTURED!"
+echo "════════════════════════════════════════════════════════════════"
+echo ""
+echo "  FLAG{reverse_shell_works_same_in_containers}"
+echo ""
+echo "  Copy this flag and submit it to earn 50 points!"
+echo "════════════════════════════════════════════════════════════════"
 
 trap - EXIT
