@@ -128,7 +128,7 @@ var AllAttacks = []AttackScenario{
 		Name:        "Defense Evasion & Masquerading",
 		Category:    "Learning Scenarios",
 		Description: "Attackers disguise malicious processes to evade detection. Learn why behavior-based detection beats signature-based for containers. Teaches: Process masquerading and why Falcon's ML approach works.",
-		ScriptPath:  "/bin/learning/07_Defense_Evasion_Masquerading.sh",
+		ScriptPath:  "/bin/learning/06_Defense_Evasion_Masquerading.sh",
 		MitreTactics: []string{"TA0005"},
 		MitreTechniques: []MitreTechnique{
 			{ID: "T1036", Name: "Masquerading"},
@@ -146,7 +146,7 @@ var AllAttacks = []AttackScenario{
 		Name:        "Full Attack Chain - MASTER LEVEL",
 		Category:    "Learning Scenarios",
 		Description: "Complete attack simulation from web vulnerability to cluster admin in 10 minutes. This master-level scenario combines all learned techniques into a realistic attack chain. Teaches: How attacks progress through multiple stages.",
-		ScriptPath:  "/bin/learning/06_Full_Attack_Chain.sh",
+		ScriptPath:  "/bin/learning/07_Full_Attack_Chain.sh",
 		MitreTactics: []string{"TA0001", "TA0002", "TA0003", "TA0004", "TA0005", "TA0006", "TA0007", "TA0009", "TA0010", "TA0011"},
 		MitreTechniques: []MitreTechnique{
 			{ID: "T1190", Name: "Exploit Public-Facing Application"},

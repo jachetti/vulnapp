@@ -1,13 +1,16 @@
 #!/bin/bash
-# Cleanup Script for Scenario 7: Defense Evasion
+# Cleanup Script for Scenario 6: Full Attack Chain
 
 set -e
 
-echo "[CLEANUP] Removing defense evasion artifacts..."
+echo "[CLEANUP] Removing attack chain artifacts..."
 
-rm -rf /tmp/.system_files 2>/dev/null || true
-rm -f /tmp/.legitimate_process 2>/dev/null || true
-rm -f /tmp/svchost.exe 2>/dev/null || true
-rm -f /tmp/chrome.exe 2>/dev/null || true
+rm -rf /var/www/html/vulnerable.php 2>/dev/null || true
+rm -rf /tmp/.stage2 2>/dev/null || true
+rm -rf /tmp/.final_flag 2>/dev/null || true
 
-echo "[CLEANUP] ✓ Defense evasion cleanup complete"
+if [ -d /host ]; then
+    rm -rf /host/tmp/vulnapp_chain 2>/dev/null || true
+fi
+
+echo "[CLEANUP] ✓ Attack chain cleanup complete"

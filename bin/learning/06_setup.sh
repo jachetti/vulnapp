@@ -1,31 +1,21 @@
 #!/bin/bash
-# Setup Script for Scenario 6: Full Attack Chain
-# Plants multiple flags for each stage of the attack
+# Setup Script for Scenario 7: Defense Evasion
+# Plants flag accessible only through masqueraded process
 
 set -e
 
-echo "[SETUP] Preparing Full Attack Chain scenario..."
+echo "[SETUP] Preparing Defense Evasion scenario..."
 
-# Stage 1: Web vulnerability
-mkdir -p /var/www/html
-echo "<?php system(\$_GET['cmd']); ?>" > /var/www/html/vulnerable.php
+# Create "privileged" directory that requires special access
+mkdir -p /tmp/.system_files
+echo "FLAG{svchost_exe_on_linux_fooled_nobody}" > /tmp/.system_files/system.dat
+chmod 644 /tmp/.system_files/system.dat
 
-# Stage 2: Container credentials
-mkdir -p /tmp/.stage2
-echo "KUBE_TOKEN=eyJhbGciOiJSUzI1NiIsImtpZCI6IkRFRkFVTFQifQ" > /tmp/.stage2/token
+# Create fake "legitimate" process that can access the flag
+echo '#!/bin/bash' > /tmp/.legitimate_process
+echo 'cat /tmp/.system_files/system.dat' >> /tmp/.legitimate_process
+chmod +x /tmp/.legitimate_process
 
-# Stage 3: Host access prep
-if [ -d /host ]; then
-    mkdir -p /host/tmp/vulnapp_chain
-    echo "FLAG{from_web_vuln_to_cluster_admin_in_10_minutes}" > /host/tmp/vulnapp_chain/final_flag.txt
-    chmod 644 /host/tmp/vulnapp_chain/final_flag.txt
-    echo "[SETUP] ✓ Final flag planted on host"
-else
-    mkdir -p /tmp/.final_flag
-    echo "FLAG{from_web_vuln_to_cluster_admin_in_10_minutes}" > /tmp/.final_flag/flag.txt
-    echo "[SETUP] ⚠️  Using fallback flag location"
-fi
-
-echo "[SETUP] ✓ Multi-stage attack chain prepared"
-echo "[SETUP] ✓ Attacker must complete all stages to get flag"
+echo "[SETUP] ✓ Flag planted in system files"
+echo "[SETUP] ✓ Attacker must use masquerading to access"
 echo "[SETUP] Ready for exploitation!"
