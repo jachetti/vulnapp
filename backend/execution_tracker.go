@@ -1,8 +1,10 @@
 package backend
 
 import (
-	"bytes"
+	"bufio"
 	"fmt"
+	"io"
+	"log"
 	"os/exec"
 	"sync"
 	"time"
@@ -117,40 +119,88 @@ func (e *Execution) GetOutputLines() []string {
 	return e.outputLines
 }
 
-// ExecuteAttack executes an attack script and tracks its output
+// streamOutput reads from a pipe and adds each line to the execution
+func streamOutput(pipe io.ReadCloser, execution *Execution, prefix string) {
+	scanner := bufio.NewScanner(pipe)
+	for scanner.Scan() {
+		line := scanner.Text()
+		execution.AddOutputLine(line)
+		log.Printf("[%s] %s: %s", execution.ID, prefix, line)
+	}
+	if err := scanner.Err(); err != nil {
+		log.Printf("[%s] Scanner error (%s): %v", execution.ID, prefix, err)
+	}
+}
+
+// ExecuteAttack executes an attack script and tracks its output in real-time
 func (t *ExecutionTracker) ExecuteAttack(attack *AttackScenario) (*Execution, error) {
 	execution := t.CreateExecution(attack.ID)
+
+	log.Printf("[%s] Starting execution of attack: %s (script: %s)", execution.ID, attack.ID, attack.ScriptPath)
 
 	// Create command
 	cmd := exec.Command("/bin/bash", attack.ScriptPath)
 
-	// Capture output
-	var outBuf, errBuf bytes.Buffer
-	cmd.Stdout = &outBuf
-	cmd.Stderr = &errBuf
+	// Get stdout and stderr pipes for real-time streaming
+	stdout, err := cmd.StdoutPipe()
+	if err != nil {
+		log.Printf("[%s] Failed to get stdout pipe: %v", execution.ID, err)
+		return nil, fmt.Errorf("failed to get stdout pipe: %v", err)
+	}
+
+	stderr, err := cmd.StderrPipe()
+	if err != nil {
+		log.Printf("[%s] Failed to get stderr pipe: %v", execution.ID, err)
+		return nil, fmt.Errorf("failed to get stderr pipe: %v", err)
+	}
 
 	execution.cmd = cmd
 
-	// Execute in goroutine
-	go func() {
-		err := cmd.Run()
+	// Start the command
+	if err := cmd.Start(); err != nil {
+		log.Printf("[%s] Failed to start command: %v", execution.ID, err)
+		return nil, fmt.Errorf("failed to start command: %v", err)
+	}
 
-		// Combine stdout and stderr
-		output := outBuf.String() + errBuf.String()
-		execution.mu.Lock()
-		execution.Output = output
-		execution.mu.Unlock()
+	log.Printf("[%s] Command started successfully, PID: %d", execution.ID, cmd.Process.Pid)
+
+	// Stream output in separate goroutines
+	var wg sync.WaitGroup
+	wg.Add(2)
+
+	go func() {
+		defer wg.Done()
+		streamOutput(stdout, execution, "stdout")
+	}()
+
+	go func() {
+		defer wg.Done()
+		streamOutput(stderr, execution, "stderr")
+	}()
+
+	// Wait for command to complete in a goroutine
+	go func() {
+		// Wait for output streaming to finish
+		wg.Wait()
+
+		// Wait for command to finish
+		err := cmd.Wait()
 
 		exitCode := 0
 		if err != nil {
 			if exitErr, ok := err.(*exec.ExitError); ok {
 				exitCode = exitErr.ExitCode()
+				log.Printf("[%s] Command exited with code: %d", execution.ID, exitCode)
 			} else {
 				exitCode = 1
+				log.Printf("[%s] Command failed: %v", execution.ID, err)
 			}
+		} else {
+			log.Printf("[%s] Command completed successfully", execution.ID)
 		}
 
 		execution.MarkCompleted(exitCode)
+		log.Printf("[%s] Execution marked as completed. Total output lines: %d", execution.ID, len(execution.GetOutputLines()))
 	}()
 
 	return execution, nil
