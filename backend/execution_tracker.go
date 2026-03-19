@@ -2,10 +2,12 @@ package backend
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"io"
 	"log"
 	"os/exec"
+	"strings"
 	"sync"
 	"time"
 )
@@ -132,13 +134,42 @@ func streamOutput(pipe io.ReadCloser, execution *Execution, prefix string) {
 	}
 }
 
+// fileExists checks if a file exists
+func fileExists(path string) bool {
+	_, err := exec.Command("test", "-f", path).Output()
+	return err == nil
+}
+
 // ExecuteAttack executes an attack script and tracks its output in real-time
 func (t *ExecutionTracker) ExecuteAttack(attack *AttackScenario) (*Execution, error) {
 	execution := t.CreateExecution(attack.ID)
 
 	log.Printf("[%s] Starting execution of attack: %s (script: %s)", execution.ID, attack.ID, attack.ScriptPath)
 
-	// Create command
+	// Step 1: Run setup script (plant vulnerabilities & flags)
+	setupScript := attack.ScriptPath[:len(attack.ScriptPath)-3] + "_setup.sh"
+	if fileExists(setupScript) {
+		log.Printf("[%s] Running setup script: %s", execution.ID, setupScript)
+		setupCmd := exec.Command("/bin/bash", setupScript)
+		setupOutput, err := setupCmd.CombinedOutput()
+
+		// Add setup output to execution
+		scanner := bufio.NewScanner(bytes.NewReader(setupOutput))
+		for scanner.Scan() {
+			execution.AddOutputLine(scanner.Text())
+		}
+
+		if err != nil {
+			log.Printf("[%s] Setup script failed: %v", execution.ID, err)
+		} else {
+			log.Printf("[%s] Setup completed successfully", execution.ID)
+		}
+	}
+
+	// Step 2: Schedule cleanup to run after execution completes
+	cleanupScript := attack.ScriptPath[:len(attack.ScriptPath)-3] + "_cleanup.sh"
+
+	// Step 3: Create command for main scenario
 	cmd := exec.Command("/bin/bash", attack.ScriptPath)
 
 	// Get stdout and stderr pipes for real-time streaming
@@ -201,6 +232,20 @@ func (t *ExecutionTracker) ExecuteAttack(attack *AttackScenario) (*Execution, er
 
 		execution.MarkCompleted(exitCode)
 		log.Printf("[%s] Execution marked as completed. Total output lines: %d", execution.ID, len(execution.GetOutputLines()))
+
+		// Run cleanup script after execution finishes
+		if fileExists(cleanupScript) {
+			log.Printf("[%s] Running cleanup script: %s", execution.ID, cleanupScript)
+			cleanupCmd := exec.Command("/bin/bash", cleanupScript)
+			cleanupOutput, err := cleanupCmd.CombinedOutput()
+
+			// Add cleanup output to logs (but not user-visible output)
+			if err != nil {
+				log.Printf("[%s] Cleanup script failed: %v - %s", execution.ID, err, string(cleanupOutput))
+			} else {
+				log.Printf("[%s] Cleanup completed successfully", execution.ID)
+			}
+		}
 	}()
 
 	return execution, nil

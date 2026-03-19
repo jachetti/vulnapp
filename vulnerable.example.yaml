@@ -1,4 +1,14 @@
-# kubectl apply -f ~/.aws/share/vulnerable.example.yaml
+# ⚠️  WARNING: INTENTIONALLY VULNERABLE CONFIGURATION ⚠️
+# This manifest contains dangerous misconfigurations for training purposes
+# ONLY deploy in isolated lab environments - NEVER in production!
+#
+# Vulnerabilities included:
+# - Privileged mode (enables container escape)
+# - Docker socket mount (full host access)
+# - Host filesystem mount (backdoor installation)
+# - Dangerous capabilities (SYS_ADMIN, SYS_PTRACE, DAC_READ_SEARCH)
+#
+# kubectl apply -f vulnerable.example.yaml
 # kubectl get service vulnerable-example-com
 ---
 apiVersion: apps/v1
@@ -17,13 +27,38 @@ spec:
     spec:
       containers:
           - name: vulnapp
-            image: quay.io/crowdstrike/vulnapp
+            image: quay.io/crowdstrike/vulnapp:2.0.0
             imagePullPolicy: Always
             command:
               - "/entrypoint.sh"
             ports:
-             - containerPort: 8080
+             - containerPort: 80
                name: web
+            # ⚠️ DANGEROUS: Privileged mode for container escape scenarios
+            securityContext:
+              privileged: true
+              capabilities:
+                add:
+                  - SYS_ADMIN        # Dangerous: Allows mount operations
+                  - SYS_PTRACE       # Dangerous: Allows process injection
+                  - DAC_READ_SEARCH  # Dangerous: Bypasses file permissions
+            # ⚠️ DANGEROUS: Volume mounts for exploitation scenarios
+            volumeMounts:
+              - name: docker-socket
+                mountPath: /var/run/docker.sock
+              - name: host-root
+                mountPath: /host
+      volumes:
+        # ⚠️ DANGEROUS: Docker socket access (full host control)
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+            type: Socket
+        # ⚠️ DANGEROUS: Host filesystem access (backdoor installation)
+        - name: host-root
+          hostPath:
+            path: /
+            type: Directory
 
 ---
 apiVersion: v1
@@ -35,5 +70,5 @@ spec:
     run: vulnerable.example.com
   ports:
     - port: 80
-      targetPort: 8080
+      targetPort: 80
   type: LoadBalancer
