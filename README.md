@@ -7,7 +7,7 @@
 
 **An intentionally vulnerable container application for testing CrowdStrike Falcon sensor detection capabilities.**
 
-VulnApp v2.0 is a modern, interactive web platform that demonstrates **24 container security attack scenarios** mapped to the MITRE ATT&CK framework. Perfect for security training, Falcon sensor validation, and container security research.
+VulnApp v2.0 is a modern, interactive web platform that demonstrates **17 container security attack scenarios** mapped to the MITRE ATT&CK framework. Perfect for security training, Falcon sensor validation, and container security research.
 
 ---
 
@@ -32,12 +32,12 @@ VulnApp v2.0 is a modern, interactive web platform that demonstrates **24 contai
 ## 🎯 What's New in v2.0
 
 - ✨ **Modern React UI** - Interactive web interface with real-time execution
-- 🎓 **6 Learning Scenarios** - Progressive CTF-style training for SE education (1,000 points)
-- 🚀 **24 Attack Scenarios** - 12 classic + 12 modern container threats (2024-2026)
+- 🎓 **17 Total Scenarios** - 7 Learning + 10 Detection = Complete CTF Experience
+- 🚩 **Full CTF Gamification** - Every scenario has a flag worth 1,000 total points
+- 🏆 **SE Certification** - Complete all scenarios for Container Security SE badge
 - 📊 **MITRE ATT&CK Integration** - Visual technique mappings and badges
 - 🔴 **WebSocket Streaming** - Live attack output in terminal-style display
-- 🎯 **Interactive Scenarios** - Reverse shell forms for LAN testing
-- 🏆 **Progress Tracking** - CTF flag submission with points and certification
+- 📈 **Progress Tracking** - Track points, scenarios completed, and certification status
 - 🐳 **Docker Ready** - Optimized multi-stage build
 - 📱 **Responsive Design** - Works on desktop, tablet, and mobile
 
@@ -111,71 +111,90 @@ oc get route vulnapp
 
 ### 🎓 Learning Scenarios (SE Training Mode)
 
-**6 Progressive Scenarios for Office Hours Training:**
+**7 Progressive Scenarios for Office Hours Training:**
 
 Perfect for CrowdStrike endpoint SEs learning container security. Each scenario bridges familiar endpoint security concepts to container-specific attacks with CTF-style flags and business impact examples.
 
-**Total: 1,000 Points**
+**Total: 500 Points (Part 1 of 2)**
 
-| Scenario | Points | Duration | Flag |
-|----------|--------|----------|------|
-| 1. Remote Access Shell | 50 | 5 min | Containers are processes |
-| 2. Process Discovery | 50 | 5 min | Namespace isolation |
-| 3. Data Collection & Exfiltration | 100 | 7 min | $147M breach simulation |
-| 4. Container Escape ⭐ | 150 | 7 min | THE key differentiator |
-| 5. Persistence Establishment | 200 | 8 min | Long-term threats & dwell time |
-| 6. Full Attack Chain | 450 | 10 min | Complete breach timeline |
+| # | Scenario | Points | Duration | Key Concept |
+|---|----------|--------|----------|-------------|
+| 1 | Remote Access Shell | 50 | 5 min | Containers are processes |
+| 2 | Process Discovery | 50 | 5 min | Namespace isolation |
+| 3 | Data Collection & Exfiltration | 75 | 7 min | Data theft impact |
+| 4 | Container Escape ⭐ | 100 | 7 min | THE key differentiator |
+| 5 | Persistence Establishment | 75 | 8 min | Long-term threats |
+| 7 | Defense Evasion & Masquerading | 50 | 6 min | Behavior-based detection |
+| 6 | Full Attack Chain (Master Level) | 100 | 10 min | Complete breach simulation |
 
 **Features:**
 - 🚩 CTF flag submission with point tracking
-- 📊 Progress tracking (X/1000 points, X/6 scenarios)
+- 📊 Progress tracking (X/1000 points, X/17 scenarios)
 - 💼 Business impact metrics ($4.5M average breach cost)
 - 🗣️ SE talking points for customer conversations
 - 🎯 Falcon detection explanations in plain English
-- 🏆 Certification badge at 1,000 points
+- 🏆 Certification badge at 1,000 points (all 17 scenarios)
 
 **Perfect for:**
-- SE office hours training (60 minutes total)
+- SE office hours training (~45 minutes for learning scenarios)
 - Customer demos and workshops
 - POC validation scenarios
 - Team onboarding
 
+### 🔬 Detection Scenarios (Advanced Testing)
+
+**10 Advanced Scenarios Showcasing Falcon Detection Capabilities:**
+
+These scenarios demonstrate proven Falcon detections across all major threat categories. Perfect for technical validation and advanced SE training.
+
+**Total: 500 Points (Part 2 of 2)**
+
+| # | Scenario | Category | Points | Key Detection |
+|---|----------|----------|--------|---------------|
+| 8 | Privileged Container Escape | Privilege Escalation | 75 | ContainerEscape (CRITICAL) |
+| 9 | Docker Socket Exploitation | Privilege Escalation | 75 | ContainerEscape, ExecutionLin |
+| 10 | Binary Masquerading | Defense Evasion | 50 | ExecutionLin |
+| 11 | Rootkit Installation | Defense Evasion | 50 | Rootkit detection |
+| 12 | C2 Remote Access | Command & Control | 50 | IntelDomainHigh |
+| 13 | Reverse Shell Trojan | Command & Control | 50 | BashReverseShell |
+| 14 | Container Drift | Impact & Detection | 50 | ContainerDrift |
+| 15 | Credential Dumping | Credential Access | 50 | Credential Access |
+| 16 | Full Breach Simulation | Multi-Stage Attack | 50 | 10-15 detections |
+| 17 | Enumeration & Exfiltration | Multi-Stage Attack | 50 | GenericDataCollection |
+
+**Combined Total: 17 Scenarios = 1,000 Points**
+
 See [bin/learning/README.md](bin/learning/README.md) for complete facilitator guide.
 
-### 24 Attack Scenarios
+### 17 Attack Scenarios by MITRE ATT&CK
 
-**Existing Attacks (12):**
-- Defense Evasion via Rootkit (T1014)
-- Defense Evasion via Masquerading (T1036)
-- Exfiltration via Alternative Protocol (T1048.003)
-- Command & Control via Remote Access (T1071.001)
-- Command & Control (Obfuscated) (T1027, T1071.001)
-- Credential Access via Dumping (T1552.001)
-- Collection via Automated Collection (T1005)
-- Execution via Command-Line Interface (T1059.004)
-- Reverse Shell Trojan (T1071.001)
-- Container Drift via File Creation (T1612)
-- Linux Trojan - Local Execution (T1496)
-- Linux Trojan - Remote Download (T1496, T1195)
+**All 17 scenarios generate proven Falcon detections:**
 
-**Modern Container Threats (12) - NEW:**
-- **Docker Socket Exploitation** (T1611) - Escape via mounted socket
-- **Privileged Container Escape** (T1611) - Cgroup notify_on_release exploit
-- **CAP_SYS_ADMIN Abuse** (T1611) - Mount operations for escape
-- **CAP_SYS_PTRACE Injection** (T1055) - Process injection attacks
-- **CAP_DAC_READ_SEARCH Bypass** (T1222) - File permission bypass
-- **HostPath Volume Backdoor** (T1053.003) - Persistent host backdoors
-- **Service Account Token Theft** (T1552.007) - Kubernetes token extraction
-- **DaemonSet Persistence** (T1525) - Cluster-wide persistence
-- **Namespace Escape via nsenter** (T1611) - Break out of namespaces
-- **Seccomp Profile Bypass** (T1562.001) - Security control bypass
-- **Image Supply Chain Poisoning** (T1525, T1195.002) - Registry compromise
-- **CVE-2019-5736 runc Escape** (T1611, T1068) - Critical CVE demonstration
+**Learning Scenarios (7):**
+- Remote Access Shell (T1059.004, T1071.001)
+- Process Discovery (T1613, T1082)
+- Data Collection & Exfiltration (T1005, T1552.007, T1048.003)
+- Container Escape - KEY DIFFERENTIATOR ⭐ (T1611)
+- Persistence Establishment (T1053.003, T1543.002)
+- Defense Evasion & Masquerading (T1036, T1055)
+- Full Attack Chain - Master Level (T1190, T1059.004, T1613, T1552.007, T1611)
+
+**Detection Scenarios (10):**
+- Privileged Container Escape (T1611, T1068) - CRITICAL
+- Docker Socket Exploitation (T1611) - CRITICAL
+- Binary Masquerading (T1036)
+- Rootkit Installation (T1014)
+- C2 Remote Access (T1071.001)
+- Reverse Shell Trojan (T1059.004)
+- Container Drift Detection (T1612)
+- Credential Dumping (T1552.001, T1552.007)
+- Full Breach Simulation (Multi-tactic attack)
+- Enumeration & Exfiltration Chain (T1082, T1005, T1048)
 
 ### API & Integration
 - **8 REST endpoints** - Attack management and execution
 - **WebSocket streaming** - Real-time output
-- **4 vulnerable endpoints** - Interactive training (RCE, LFI, Reverse Shell, SQLi)
+- **Progress tracking API** - CTF flag validation and points
 - **Health checks** - Container readiness monitoring
 - **JSON responses** - Easy integration
 

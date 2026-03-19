@@ -170,5 +170,13 @@ echo "  • Multiple GenReverseShell (if executed via reverse shell context)"
 echo ""
 echo "Check Falcon console for 10+ detections from this attack chain!"
 echo ""
+echo ""
+echo "🚩 FLAG CAPTURED!"
+echo "════════════════════════════════════════════════════════════════"
+echo ""
+echo "  FLAG{complete_breach_chain_stopped_by_falcon}"
+echo ""
+echo "  Copy this flag and submit it to earn 50 points!"
+echo "════════════════════════════════════════════════════════════════"
 
 trap - EXIT

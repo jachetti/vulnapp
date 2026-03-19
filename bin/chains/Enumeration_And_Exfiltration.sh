@@ -195,5 +195,13 @@ echo "  • TestTriggerHigh (Stage 2)"
 echo ""
 echo "Check Falcon console for 8-12 detections!"
 echo ""
+echo ""
+echo "🚩 FLAG CAPTURED!"
+echo "════════════════════════════════════════════════════════════════"
+echo ""
+echo "  FLAG{data_exfiltration_blocked_before_loss}"
+echo ""
+echo "  Copy this flag and submit it to earn 50 points!"
+echo "════════════════════════════════════════════════════════════════"
 
 trap - EXIT
