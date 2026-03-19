@@ -81,19 +81,19 @@ curl http://localhost/api/attacks | jq '.count'
 - [ ] CrowdStrike logo and branding visible
 - [ ] **Progress header visible at top** (NEW!)
   - Shows "0 / 1000 points"
-  - Shows "0 / 7 scenarios"
+  - Shows "0 / 6 scenarios"
   - Progress bar at 0%
 - [ ] Attack categories visible
-- [ ] "Learning Scenarios (7)" tab present
+- [ ] "Learning Scenarios (6)" tab present
 
 ### ✅ Checklist 2: Learning Scenarios Tab
 
-Click on **"Learning Scenarios (7)"** tab:
+Click on **"Learning Scenarios (6)"** tab:
 
-- [ ] 7 scenario cards appear
+- [ ] 6 scenario cards appear
 - [ ] Each card shows:
   - 🎓 emoji in name
-  - Point value in top-right corner (50, 50, 50, 100, 150, 200, 300)
+  - Point value in top-right corner (50, 50, 100, 150, 200, 450)
   - 🔒 "locked" icon for unsolved
   - "Execute ▶" button (red)
 - [ ] No green checkmarks yet (none solved)
@@ -191,9 +191,9 @@ vulnapp
    - [ ] 🎉 Green success box appears
    - [ ] Message: "Correct! Flag captured!"
    - [ ] Shows: "+50 POINTS" badge
-   - [ ] **Progress header updates automatically**:
+   - [ ] Progress header updates automatically**:
      - Points: 50 / 1000
-     - Scenarios: 1 / 7
+     - Scenarios: 1 / 6
      - Progress bar: 5%
    - [ ] Flag input disappears, replaced with "✅ Solved!"
 
@@ -227,11 +227,11 @@ vulnapp
 4. Submit flag
 5. **Verify:**
    - [ ] +50 points → Total: 100/1000
-   - [ ] Scenarios: 2/7
+   - [ ] Scenarios: 2/6
    - [ ] Progress bar: 10%
    - [ ] Card turns green
 
-### Execute Scenario 4: Container Escape (100 pts)
+### Execute Scenario 4: Container Escape (150 pts)
 
 **This is the KEY scenario with CRITICAL detection:**
 
@@ -243,23 +243,23 @@ vulnapp
    - [ ] Flag: `FLAG{container_isolation_bypassed_welcome_to_host}`
 3. Submit flag
 4. **Verify:**
-   - [ ] +100 points → Total: 200/1000
-   - [ ] Scenarios: 3/7
-   - [ ] Progress bar: 20%
+   - [ ] +150 points → Total: 250/1000
+   - [ ] Scenarios: 3/6
+   - [ ] Progress bar: 25%
 
-### Skip to Scenario 7: Full Attack Chain (300 pts)
+### Skip to Scenario 6: Full Attack Chain (450 pts)
 
 **Test the master scenario:**
 
-1. Execute "🎓 Scenario 7: Full Attack Chain"
+1. Execute "🎓 Scenario 6: Full Attack Chain"
 2. This is longer (~10 minutes)
 3. Watch enhanced terminal show multiple stages
 4. Find flag: `FLAG{from_web_vuln_to_cluster_admin_in_10_minutes}`
 5. Submit flag
 6. **Verify:**
-   - [ ] +300 points → Total: 500/1000
-   - [ ] Scenarios: 4/7
-   - [ ] Progress bar: 50%
+   - [ ] +450 points → Total: 700/1000
+   - [ ] Scenarios: 4/6
+   - [ ] Progress bar: 70%
 
 ---
 
@@ -295,17 +295,16 @@ vulnapp
 
 ### Solve Remaining Scenarios
 
-**Complete all 7 scenarios to reach 1000 points:**
+**Complete all 6 scenarios to reach 1000 points:**
 
 | Scenario | Points | Flag |
 |----------|--------|------|
 | 1. Remote Shell | 50 | `FLAG{reverse_shell_works_same_in_containers}` |
 | 2. Process Discovery | 50 | `FLAG{discovered_container_boundaries_and_limits}` |
-| 3. Credential Theft | 50 | `FLAG{credentials_hidden_in_environment_variables}` |
-| 4. Container Escape | 100 | `FLAG{container_isolation_bypassed_welcome_to_host}` |
-| 5. Docker Socket | 150 | `FLAG{docker_socket_gives_root_access_to_everything}` |
-| 6. Kubernetes API | 200 | `FLAG{kubernetes_token_equals_cluster_admin_oops}` |
-| 7. Full Chain | 300 | `FLAG{from_web_vuln_to_cluster_admin_in_10_minutes}` |
+| 3. Data Collection | 100 | `FLAG{credentials_stolen_data_staged_for_exfiltration}` |
+| 4. Container Escape | 150 | `FLAG{container_isolation_bypassed_welcome_to_host}` |
+| 5. Persistence | 200 | `FLAG{backdoors_established_attacker_can_return_anytime}` |
+| 6. Full Chain | 450 | `FLAG{from_web_vuln_to_cluster_admin_in_10_minutes}` |
 
 **After reaching 1000 points:**
 
@@ -320,7 +319,7 @@ vulnapp
   │ VulnApp Container Security SE  │
   └────────────────────────────────┘
   ```
-- [ ] All 7 scenario cards show green borders
+- [ ] All 6 scenario cards show green borders
 - [ ] All buttons show "View ✓"
 
 ---
@@ -382,7 +381,7 @@ vulnapp
 ### Enhanced Terminal Features
 
 **Test Auto-Scroll:**
-1. Execute long scenario (Scenario 7)
+1. Execute long scenario (Scenario 6)
 2. As output streams:
    - [ ] Terminal auto-scrolls to bottom
 3. Scroll up manually
