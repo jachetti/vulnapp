@@ -29,8 +29,10 @@ RUN npm run build
 # ========================================
 FROM golang:1.23-alpine AS backend-builder
 
-# Install build dependencies
-RUN apk add --no-cache git ca-certificates
+# Install build dependencies with retry and fallback mirrors
+RUN apk add --no-cache ca-certificates || \
+    (echo "Primary mirror failed, trying fallback..." && \
+     apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main ca-certificates)
 
 WORKDIR /build
 
