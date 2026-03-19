@@ -43,8 +43,21 @@ VulnApp v2.0 is a modern, interactive web platform that demonstrates **24 contai
 
 ---
 
-## 🚀 Quick Start (3 Commands!)
+## 🚀 Quick Start
 
+**Option 1: From GitHub (with wget - no git required)**
+```bash
+# Download and extract
+wget https://github.com/jachetti/vulnapp/archive/refs/heads/main.zip
+unzip main.zip
+cd vulnapp-main
+
+# Build and run
+docker build -t vulnapp .
+docker run -p 80:80 vulnapp
+```
+
+**Option 2: With git**
 ```bash
 git clone https://github.com/jachetti/vulnapp.git
 cd vulnapp
@@ -258,10 +271,12 @@ GET  /api/vulnerable/sqli          - SQL injection
 
 ### Build Process
 
+**Option 1: Download from GitHub (no git required)**
 ```bash
-# Clone repository
-git clone https://github.com/CrowdStrike/vulnapp.git
-cd vulnapp
+# Download latest release
+wget https://github.com/jachetti/vulnapp/archive/refs/heads/main.zip
+unzip main.zip
+cd vulnapp-main
 
 # Automated build and test
 ./build-and-test.sh
@@ -275,6 +290,16 @@ docker build -t vulnapp:2.0 .
 
 # Run
 docker run -p 80:80 vulnapp:2.0
+```
+
+**Option 2: Clone with git**
+```bash
+# Clone repository
+git clone https://github.com/jachetti/vulnapp.git
+cd vulnapp
+
+# Then follow same build steps above
+./build-and-test.sh
 ```
 
 ---
@@ -469,7 +494,7 @@ Apache License 2.0 - See [LICENSE](LICENSE) for details.
 
 ## 📞 Support
 
-- **Issues:** [GitHub Issues](https://github.com/CrowdStrike/vulnapp/issues)
+- **Issues:** [GitHub Issues](https://github.com/jachetti/vulnapp/issues)
 - **Documentation:** [Complete Documentation](DOCKER_GUIDE.md)
 
 ---
