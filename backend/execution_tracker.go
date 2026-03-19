@@ -7,7 +7,6 @@ import (
 	"io"
 	"log"
 	"os/exec"
-	"strings"
 	"sync"
 	"time"
 )
