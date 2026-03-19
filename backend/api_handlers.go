@@ -42,9 +42,15 @@ func (h *APIHandler) GetWebSocketHandler() *WebSocketHandler {
 func (h *APIHandler) HandleGetAttacks(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
+	// Build categories map
+	categoriesMap := make(map[string][]AttackScenario)
+	for _, attack := range AllAttacks {
+		categoriesMap[attack.Category] = append(categoriesMap[attack.Category], attack)
+	}
+
 	response := map[string]interface{}{
 		"attacks":    AllAttacks,
-		"categories": GetAllCategories(),
+		"categories": categoriesMap,
 		"count":      len(AllAttacks),
 	}
 
