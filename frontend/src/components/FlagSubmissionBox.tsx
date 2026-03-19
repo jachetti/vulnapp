@@ -183,7 +183,7 @@ export const FlagSubmissionBox: React.FC<FlagSubmissionBoxProps> = ({
 
           {/* Hint */}
           <div className="text-xs text-gray-500 italic">
-            💡 Tip: Look for lines containing "FLAG{'{'...{'}'}" in the terminal output above
+            💡 Tip: Look for lines containing &quot;FLAG&#123;...&#125;&quot; in the terminal output above
           </div>
         </div>
       )}
