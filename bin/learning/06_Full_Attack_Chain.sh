@@ -1,13 +1,13 @@
 #!/bin/bash
-# Learning Scenario 7: Complete Attack Chain
+# Learning Scenario 6: Complete Attack Chain
 # CTF FLAG: FLAG{from_web_vuln_to_cluster_admin_in_10_minutes}
-# Points: 300 - MASTER LEVEL
+# Points: 450 - MASTER LEVEL
 
 set +e
 echo "════════════════════════════════════════════════════════════════"
-echo "  🎯 LEARNING SCENARIO 7: Complete Attack Chain"
+echo "  🎯 LEARNING SCENARIO 6: Complete Attack Chain"
 echo "  Web Exploit → Container → Escape → Cloud Compromise"
-echo "  CTF Points: 300 | Difficulty: ★★★★★ MASTER"
+echo "  CTF Points: 450 | Difficulty: ★★★★★ MASTER"
 echo "════════════════════════════════════════════════════════════════"
 echo ""
 
@@ -16,8 +16,9 @@ echo ""
 echo "This scenario combines everything you've learned:"
 echo "  ✓ Remote shell (Scenario 1)"
 echo "  ✓ Process discovery (Scenario 2)"
-echo "  ✓ Credential theft (Scenario 3)"
+echo "  ✓ Data collection (Scenario 3)"
 echo "  ✓ Container escape (Scenario 4)"
+echo "  ✓ Persistence (Scenario 5)"
 echo "  ✓ Docker socket (Scenario 5)"
 echo "  ✓ Kubernetes API (Scenario 6)"
 echo ""

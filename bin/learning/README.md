@@ -2,7 +2,7 @@
 
 ## Overview
 
-These 7 progressive learning scenarios are designed for **CrowdStrike endpoint SEs** learning container security. Each scenario bridges familiar endpoint security concepts to container-specific attacks.
+These 6 progressive learning scenarios are designed for **CrowdStrike endpoint SEs** learning container security. Each scenario bridges familiar endpoint security concepts to container-specific attacks.
 
 ## 🎯 CTF-Style Learning
 
@@ -13,17 +13,18 @@ Each scenario includes:
 - **Falcon detection explanations** in plain English
 
 ### Points System:
-- **Scenario 1-3:** 50 points each (Basics)
-- **Scenario 4-5:** 100-150 points (Container-specific)
-- **Scenario 6:** 200 points (Kubernetes/Cloud)
-- **Scenario 7:** 300 points (Master level)
+- **Scenarios 1-2:** 50 points each (Basics)
+- **Scenario 3:** 100 points (Data theft)
+- **Scenario 4:** 150 points (Container escape - KEY)
+- **Scenario 5:** 200 points (Persistence)
+- **Scenario 6:** 450 points (Master level)
 - **Total:** 1,000 points for completion
 
 ---
 
 ## 📚 Learning Path
 
-### **Level 1: Familiar Territory (Scenarios 1-3)**
+### **Level 1: Familiar Territory (Scenarios 1-2)**
 *Map endpoint concepts to containers*
 
 #### Scenario 1: Remote Access Shell (50 pts)
@@ -39,43 +40,35 @@ Each scenario includes:
 **Teaches:** Namespace isolation, Docker socket detection, K8s discovery
 **Duration:** 5 min
 
-#### Scenario 3: Credential Theft (50 pts)
-**Flag:** `FLAG{credentials_hidden_in_environment_variables}`
-**Concept:** Credentials in different places (env vars, K8s secrets)
-**Endpoint Parallel:** Mimikatz, /etc/shadow, SSH keys
-**Duration:** 5 min
+### **Level 2: Container Attacks (Scenarios 3-4)**
+*Data theft and container-specific threats*
 
-### **Level 2: Container-Specific Threats (Scenarios 4-5)**
-*New attack surfaces that don't exist on traditional endpoints*
+#### Scenario 3: Data Collection & Exfiltration (100 pts)
+**Flag:** `FLAG{credentials_stolen_data_staged_for_exfiltration}`
+**Concept:** Data theft business impact - credential hunting, data staging, C2 beacons
+**Shows:** Simulated $147M data breach
+**Endpoint Parallel:** Mimikatz, credential dumping, data exfiltration
+**Duration:** 7 min
 
-#### Scenario 4: Container Escape (100 pts)
+#### Scenario 4: Container Escape (150 pts)
 **Flag:** `FLAG{container_isolation_bypassed_welcome_to_host}`
 **Concept:** THE key difference - breaking container isolation
 **Endpoint Parallel:** VM escape, sandbox breakout
 **Duration:** 7 min
 **⭐ Key SE Learning Moment:** This attack doesn't exist in traditional endpoint security!
 
-#### Scenario 5: Docker Socket Exploitation (150 pts)
-**Flag:** `FLAG{docker_socket_gives_root_access_to_everything}`
-**Concept:** API abuse for instant host root
-**Endpoint Parallel:** Finding domain admin credentials
-**Duration:** 6 min
-**Shows:** 30-second path from container → host root
+### **Level 3: Advanced Threats (Scenarios 5-6)**
+*Persistence and complete attack chains*
 
-### **Level 3: Cloud-Native Attacks (Scenario 6)**
-*Kubernetes and cloud-specific threats*
-
-#### Scenario 6: Kubernetes API Exploitation (200 pts)
-**Flag:** `FLAG{kubernetes_token_equals_cluster_admin_oops}`
-**Concept:** Service account token theft → cluster compromise
-**Endpoint Parallel:** Every process having domain admin credentials
+#### Scenario 5: Persistence Establishment (200 pts)
+**Flag:** `FLAG{backdoors_established_attacker_can_return_anytime}`
+**Concept:** Backdoor techniques and long-term threats
+**Shows:** Binary masquerading, C2 beacons, supply chain poisoning, DaemonSets
+**Endpoint Parallel:** Scheduled tasks, registry run keys, services
 **Duration:** 8 min
-**Teaches:** #1 Kubernetes attack vector, RBAC importance
+**Teaches:** Dwell time costs ($4.5M breach average)
 
-### **Level 4: Master Challenge (Scenario 7)**
-*Complete attack chain combining all concepts*
-
-#### Scenario 7: Full Attack Chain (300 pts)
+#### Scenario 6: Full Attack Chain (450 pts)
 **Flag:** `FLAG{from_web_vuln_to_cluster_admin_in_10_minutes}`
 **Concept:** Web exploit → Container → Escape → Cloud compromise
 **Shows:** Complete 10-minute breach timeline
@@ -93,26 +86,30 @@ Each scenario includes:
 - "Today we'll map what you know about endpoints to containers"
 - "Each scenario has a CTF flag - track your points!"
 
-**2. Scenarios 1-3: Basics (15 min)**
+**2. Scenarios 1-2: Basics (10 min)**
 - Quick demos showing familiar attacks work the same
 - Emphasize: "See? Same commands you already know"
 - Pause for questions after each
 
-**3. Scenarios 4-5: Container-Specific (20 min)**
-- **Scenario 4 is the KEY moment** - container escape
+**3. Scenario 3: Data Theft (7 min)**
+- Show business impact with simulated $147M breach
+- "This is why customers care about detection speed"
+
+**4. Scenario 4: Container Escape (10 min)**
+- **This is the KEY moment** - container escape
 - This is where "aha!" happens
 - "This attack doesn't exist on traditional endpoints!"
 
-**4. Scenario 6: Cloud-Native (10 min)**
-- For cloud-focused SEs
-- Connect to AWS/Azure IAM concepts they may know
+**5. Scenario 5: Persistence (10 min)**
+- Show long-term threat and dwell time costs
+- Backdoors, supply chain, DaemonSets
 
-**5. Scenario 7: Full Chain (10 min)**
+**6. Scenario 6: Full Chain (10 min)**
 - Show complete breach
 - Highlight Falcon detections at each stage
 - Business impact discussion
 
-**6. Q&A & Certification (5 min)**
+**7. Q&A & Certification (5 min)**
 - Common customer questions
 - SE certification recognition
 - Next steps for customer demos
@@ -144,7 +141,7 @@ Each scenario includes:
 
 ## 🎬 Customer Demo Readiness
 
-After completing all 7 scenarios, SEs can:
+After completing all 6 scenarios, SEs can:
 
 ✅ Explain containers in < 5 minutes
 ✅ Demonstrate container escape (the "wow" moment)
@@ -162,11 +159,10 @@ Each scenario generates these detections:
 |----------|------------|----------|
 | 1. Remote Shell | BashReverseShell, TestTriggerHigh | High |
 | 2. Discovery | GenReverseShell (if in shell) | High |
-| 3. Credentials | GenericDataCollection | High |
+| 3. Data Collection | GenericDataCollection, IntelDomainHigh | High |
 | 4. Escape | **ContainerEscape** | Critical |
-| 5. Docker Socket | ContainerEscape, ExecutionLin | Critical |
-| 6. K8s API | IntelDomainHigh, GenReverseShell | High |
-| 7. Full Chain | 10-15 detections across all tactics | Critical/High |
+| 5. Persistence | ExecutionLin, IntelDomainHigh | Critical |
+| 6. Full Chain | 10-15 detections across all tactics | Critical/High |
 
 ---
 
@@ -174,11 +170,11 @@ Each scenario generates these detections:
 
 ```bash
 # On demo machine:
-docker run -p 8080:80 vulnapp:latest
+docker run -p 80:80 vulnapp:2.0
 
-# Navigate to: http://localhost:8080
-# Click "🎓 Learning Mode"
-# Follow scenarios 1-7 in order
+# Navigate to: http://localhost
+# Click "🎓 Learning Scenarios"
+# Follow scenarios 1-6 in order
 # Collect all flags (1,000 points total!)
 ```
 
@@ -186,10 +182,10 @@ docker run -p 8080:80 vulnapp:latest
 
 ## 🏆 SE Certification
 
-**Upon completing all 7 scenarios, SE earns:**
+**Upon completing all 6 scenarios, SE earns:**
 - ✅ VulnApp Container Security Certification
 - ✅ 1,000 CTF points
-- ✅ All 7 flags collected
+- ✅ All 6 flags collected
 - ✅ Ready to demo to customers
 - ✅ Confident in container security positioning
 
@@ -200,22 +196,22 @@ docker run -p 8080:80 vulnapp:latest
 **Q: "How is this different from endpoint security?"**
 **A:** Covered in Scenario 4 - Container escapes don't exist on traditional endpoints
 
-**Q: "Why can't we just use RBAC and least privilege?"**
-**A:** Covered in Scenario 6 - RBAC is critical, but you need detection when it's bypassed
+**Q: "What's the business impact of a container breach?"**
+**A:** Covered in Scenario 3 - Simulated $147M data breach example
 
-**Q: "Can't DevOps teams just not run privileged containers?"**
-**A:** Covered in Scenario 5 - Yes, but you need visibility into what's actually running
+**Q: "How do attackers maintain access?"**
+**A:** Covered in Scenario 5 - Persistence techniques including supply chain poisoning
 
 **Q: "What's the ROI?"**
-**A:** Covered in Scenario 7 - $4.5M average breach cost avoided with real-time detection
+**A:** Covered in Scenario 6 - $4.5M average breach cost avoided with real-time detection
 
 ---
 
 ## 🎯 Next Steps
 
 After office hours, SEs can:
-1. Practice 1-2 scenarios again on their own
-2. Run customer demo scenario (Scenario 8 - separate file)
+1. Practice 1-2 scenarios again on their own (~45 minutes)
+2. Run customer demo using specific scenarios
 3. Use scenarios in POCs and workshops
 4. Customize scenarios for specific industries
 
